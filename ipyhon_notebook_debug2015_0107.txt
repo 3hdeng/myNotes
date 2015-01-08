@@ -1,0 +1,47 @@
+>ipython notebook
+--> pycharm debug config
+>python ipython-script.py notebook
+
+
+//===
+*args
+**kwargs
+
+
+
+//===
+pycharm short cut
+F9 : resume
+F8 : step over
+F7 : step into
+
+Alt+1 : Project view
+Alt+2 : structure/class view
+Alt+5 : debug view
+
+Atl+Q : context info (under which function)
+
+
+
+//=== 
+codemirror : cell editor
+backbone
+angularJs
+
+
+
+//=== tornado httpserver + jinja2 template
+C:\Users\eltonden\Anaconda\Lib\site-packages\tornado\httpserver.py
+
+return url_escape(url_path_join(
+            self.base_url, 'api', 'notebooks', path, name
+        ))
+
+
+ location = url_path_join(self.base_url, 'api/notebooks',
+            path, name, 'checkpoints', checkpoint['id'])
+ 
+
+
+//=== jinja2 template
+C:\Users\eltonden\Anaconda\Lib\site-packages\jinja2\environment.py

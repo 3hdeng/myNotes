@@ -1,0 +1,98 @@
+﻿ipython is somewhat like the conventional Basic ?
+
+http://opentechschool.github.io/python-data-intro/core/notebook.html
+IPython isn't a different programming language, it's just a set of 
+computer programs for working with the Python language.
+
+http://www.randalolson.com/2012/05/12/a-short-demo-on-how-to-use-ipython-notebook-as-a-research-notebook/
+IPython Notebook : seamless integration of text and code
+IPython Notebook as a research notebook
+
+
+
+//=== markdown cell
+In IPython this is accomplished by marking up text with the Markdown language. The corresponding cells are called Markdown cells. The Markdown language provides a simple way to perform this text markup, that is, to specify which parts of the text should be emphasized (italics), bold, form lists, etc.
+
+
+Heading cells
+You can provide a conceptual structure for your computational document as a whole using different levels of headings; there are 6 levels available, from level 1 (top level) down to level 6 (paragraph). These can be used later for constructing tables of contents, etc. As with Markdown cells, a heading cell is replaced by a rich text rendering of the heading when the cell is executed.
+
+
+[Q] 
+how to start ipython notebook from ipython console?
+
+In [3]: !ipython notebook
+--> dangerous??
+
+
+
+IPython profile: 3h
+
+In [1]: !dir
+ Volume in drive D is Temporary Storage
+ Volume Serial Number is C8AD-C56B
+
+ Directory of D:\workspaces\ipython
+
+12/11/2014  11:48 AM    <DIR>          .
+12/11/2014  11:48 AM    <DIR>          ..
+12/11/2014  11:36 AM    <DIR>          .ipynb_checkpoints
+12/10/2014  12:33 PM             1,646 ex1.ipynb
+12/11/2014  11:48 AM             2,087 ex2.ipynb
+               2 File(s)          3,733 bytes
+               3 Dir(s)  49,822,162,944 bytes free
+
+In [2]: notebook
+UsageError: too few arguments
+
+
+In [3]: !ipython notebook
+2014-12-11 12:04:02.381 [NotebookApp] Using existing profile dir: u'C:\\Users\\eltonden\\.ipython\\profile_default'
+2014-12-11 12:04:02.395 [NotebookApp] Using MathJax from CDN: https://cdn.mathjax.org/mathjax/latest/MathJax.js
+2014-12-11 12:04:02.443 [NotebookApp] Serving notebooks from local directory: D:\workspaces\ipython
+2014-12-11 12:04:02.443 [NotebookApp] 0 active kernels
+2014-12-11 12:04:02.443 [NotebookApp] The IPython Notebook is running at: http://localhost:8888/
+2014-12-11 12:04:02.443 [NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmatio
+
+
+
+
+[Q] how to stop ipython notebook?
+how to close IPython Notebook properly?
+
+Currently, I just close the browser tabs and then use Ctrl+C in the terminal.
+Unfortunately, neither exit() nor ticking Kill kernel upon exit does help (they do kill the kernel they but don't exit the iPython).
+
+
+try killing the pythonw process from the Task Manager (if Windows) if nothing else works.
+
+-->after closing chrome browser, 
+the kernel is shutdown auto,
+and then ctl+c does not work , nor other keys function,
+the whole terminal console is frozen!
+
+
+
+//===
+[Q] how to start ipython notebook with differenct profile ?
+--> ipython notebook --profile=3h
+xxx ipython --profile=3h notebook
+
+
+
+[Q] how to view the plot result in noteboook?
+
+http://nbviewer.ipython.org/github/ipython/ipython/blob/1.x/examples/notebooks/Part%203%20-%20Plotting%20with%20Matplotlib.ipynb
+matplotlib mode
+To make plots using Matplotlib, you must first enable IPython's matplotlib mode.
+%matplotlib inline
+--> use the inline backend, which will embed plots inside the Notebook:
+
+
+
+*** nbconvert and nbviewer
+Notebooks may be exported to a range of static formats, including HTML (for example, for blog posts), reStructeredText, LaTeX, PDF, and slide shows,
+ via the nbconvert command.
+
+In effect, nbviewer is simply nbconvert as a web service
+

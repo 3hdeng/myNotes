@@ -1,0 +1,71 @@
+//===  
+http://ipython.org/ipython-doc/dev/config/options/qtconsole.html
+http://stackoverflow.com/questions/9906938/change-ipython-qtconsole-settings
+
+> ipython qtconsole --ConsoleWidget.font_size=11
+
+
+Second, create an IPython config file:
+
+Windows - %USERPROFILE%\.ipython\profile_default\ipython_config.py
+Linux or OS X - ~/.ipython/profile_default/ipython_config.py
+Sample IPython contents:
+
+c = get_config()
+
+c.IPythonWidget.font_size = 11
+c.IPythonWidget.font_family = 'Consolas'
+
+
+//=== 
+http://wisdomthroughknowledge.blogspot.com/2012/07/accessing-ipython-notebook-remotely.html
+
+run ipython notebook over ssh terminal?
+
+
+Step 1
+On the remote machine run the IPython web-based environment and direct it to a specific port (instead of the default which fires up a web browser). The command for this should look something like:
+ipython notebook --no-browser --port=7000
+Now it is running on port 7000 (we just picked this arbitrarily) and also doesn't start up the browser as it normally does.
+
+Step 2
+On the local machine, you would want to make sure you have credentials to access the remote machine without having to type a password; this makes the process smoother and is necessary with the flags we are using below. For example, you could use SSH public-private key pairs with cached credentials or authenticate with Kerberos where SSH supports GSSAPI.
+
+Step 3
+Now you can access this port using an SSH tunnel with port forwarding. The command for that will look like:
+ssh -N -f -L localhost:6000:localhost:7000 username@dest.ination.com
+This command can be broken down as follows:
+
+-N	This flag is used to tell SSH to not execute a remote command; it is used exclusively with port forwarding for situations like this.
+-f	This flag tells SSH to go into the background before it executes the command but after the port forwards are established.
+
+This command also implies "-n" which prevents reading from stdin and is necessary when putting SSH in the background.
+
+Note: "-n" does something completely different from "-N".
+-L	This command sets up the port forwards.
+
+In this particular case, the first pair of localhost:6000 says to forward port 6000 on the localhost to the SSH port 22. The second pair of localhost:7000 says to have the SSH port 22 on the remote machine be forwarded to port 7000 on the remote machine which is where IPython Notebook is running.
+
+It essentially links an arbitrary local port to a port on the remote machine over an SSH tunnel.
+
+The overall idea of the command is that you want to tell SSH to connect to the remote machine, not read data from stdin and go into the background successfully after establishing the port forwards.
+
+Note: The port numbers are arbitrary. I used 6000 and 7000 to clarify the command but you can just use the same port number as well.
+
+
+
+Step 4
+This is all setup. Now to use the session all you have to do is run your preferred web browser on your local machine with the URL: 
+http://localhost:6000
+Note: Your particular installation of the IPython Notebook server may have SSL enabled in its configuration files. If that is the case use 'https://localhost:6000' instead.
+
+
+
+
+//===
+ line.set_data(data[...,:num])
+    return line,
+
+fig1 = plt.figure()
+
+data = np.random.rand(2, 25)

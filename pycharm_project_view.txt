@@ -1,0 +1,6 @@
+View -> Tool Windows -> Project
+View -> Tool Windows -> Structure
+
+
+//=== find usage
+ Alt+F7 

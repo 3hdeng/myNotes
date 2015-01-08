@@ -1,0 +1,34 @@
+//=== http://stackoverflow.com/questions/14286457/using-parameters-in-batch-files-at-dos-command-line
+
+Using parameters in batch files at DOS command line
+
+ parameters passed through the command line can be accessed in batch files with the notation %1 to %9. There are also two other tokens that you can use:
+
+%0 is the executable (batch file) name as specified in the command line.
+%* is all parameters specified in the command line -- this is very useful if you want to forward the parameters to another program.
+
+
+//=== http://www.computerhope.com/prompthl.htm
+chdir D:\workspaces\ipython
+D:
+prompt $P$G
+ipython --profile=3h
+
+
+//===
+@echo off
+
+//===
+ Example: 
+inside batch: 
+   for %%d in (*) do echo %%d 
+
+from command line:
+   for %d in (*) do echo %d –  Steve Midgley Jan 16 '13 at 17:08 
+
+
+FOR %%A IN (%*) DO (
+    REM Now your batch file handles %%A instead of %1
+    REM No need to use SHIFT anymore.
+    ECHO %%A
+)

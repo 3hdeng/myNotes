@@ -1,0 +1,147 @@
+https://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/
+http://matplotlib.org/1.4.2/examples/animation/index.html
+
+
+//=== http://matplotlib.org/1.4.2/api/animation_api.html
+
+
+class matplotlib.animation.ArtistAnimation(fig, artists, *args, **kwargs)
+Bases: matplotlib.animation.TimedAnimation
+
+Before calling this function, all plotting should have taken place and the relevant artists saved.
+
+frame_info is a list, with each list entry a collection of artists that represent what needs to be enabled on each frame. These will be disabled for other frames.
+
+
+class matplotlib.animation.FuncAnimation(fig, func, frames=None, init_func=None, fargs=None, save_count=None, **kwargs)
+Bases: matplotlib.animation.TimedAnimation
+
+Makes an animation by repeatedly calling a function func, passing in (optional) arguments in fargs.
+
+*** frames can be a generator, an iterable, or a number of frames.
+
+init_func is a function used to draw a clear frame. If not given, the results of drawing from the first item in the frames sequence will be used. This function will be called once before the first frame.
+
+If blit=True, func and init_func should return an iterable of drawables to clear.
+
+kwargs include repeat, repeat_delay, and interval: interval draws a new frame every interval milliseconds. repeat controls whether the animation should repeat when the sequence of frames is completed. repeat_delay optionally adds a delay in milliseconds before repeating the animation.
+
+
+class matplotlib.animation.TimedAnimation(fig, interval=200, repeat_delay=None, repeat=True, event_source=None, *args, **kwargs)
+
+
+//=== 
+import matplotlib.animation as animation
+animation.Animation._repr_html_ = anim_to_html
+
+
+FuncAnimation
+ArtistAnimation
+
+
+
+//=== matplotlib.animation.FuncAnimation(fig, func, frames=None, init_func=None, fargs=None, save_count=None, **kwargs)
+
+*** frames can be a generator, an iterable, or a number of frames.
+--> data_gen, 25, frames=600
+
+def data_gen():
+    t = data_gen.t
+    cnt = 0
+    while cnt < 1000:
+        cnt+=1
+        t += 0.05
+        yield t, np.sin(2*np.pi*t) * np.exp(-t/10.)
+data_gen.t = 0
+
+def run(data):
+    # update the data
+    t,y = data
+    xdata.append(t)
+    ydata.append(y)
+...
+animation.FuncAnimation(fig, run, data_gen, blit=True, interval=10,   repeat=False) 
+
+
+
+def update_line(num, data, line):
+    line.set_data(data[...,:num])
+    return line,
+
+line_ani = animation.FuncAnimation(fig1, update_line, 25, fargs=(data, l),  interval=50, blit=True)
+
+
+
+
+def animate(i):
+    x = np.linspace(0, 2, 1000)
+    y = np.sin(2 * np.pi * (x - 0.01 * i))
+    line.set_data(x, y)
+    return line,
+ani = animation.FuncAnimation(fig, animate, frames=600,
+                              interval=10, blit=True, init_func=init)
+
+
+
+//===  matplotlib.animation.ArtistAnimation(fig, artists, *args, **kwargs)
+ims = []
+for add in np.arange(15):
+    ims.append((plt.pcolor(x, y, base + add, norm=plt.Normalize(0, 30)),))
+
+im_ani = animation.ArtistAnimation(fig2, ims, interval=50, repeat_delay=3000,
+    blit=True)
+
+
+
+//=== matplotlib, animation , ffmpeg
+http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/AnimationEmbedding.ipynb
+
+ matplotlib animations (see the basic tutorial here, as well as my examples of animating a quantum system, an optical illusion, the Lorenz system in 3D, and recreating Super Mario). 
+
+
+http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/ 
+
+C:\Users\eltonden\Anaconda\lib\site-packages\matplotlib\animation.py:727: UserWarning: MovieWriter ffmpeg unavailable
+  warnings.warn("MovieWriter %s unavailable" % writer)
+
+https://www.ffmpeg.org/download.html#build-windows
+--> http://ffmpeg.zeranoe.com/builds/
+
+-->
+dnload & install 7zip
+dnload & install ffmpeg
+http://www.wikihow.com/Install-FFmpeg-on-Windows
+
+
+
+--> add ffmpeg/bin  to $Path
+
+-->
+Open the command prompt. Enter the command “ffmpeg –version”
+If you receive a “libstdc++ -6 is missing” error, you may need to install the Microsoft Visual C++ Redistributable Package, which is available for free from Microsoft.
+
+
+
+-->
+matplotlib\backends\backend_agg.pyc in print_raw(self, filename_or_obj, *args, **kwargs)
+    503             close = False
+    504         try:
+--> 505             renderer._renderer.write_rgba(filename_or_obj)
+    506         finally:
+    507             if close:
+
+RuntimeError: Error writing to file
+
+
+
+-->
+https://github.com/matplotlib/matplotlib/issues/2764
+animation save gets error writing to file with ffmpeg and ogv (or ogg) #2764
+
+
+-->
+explicitly set the save writer to be FFmpegFileWriter() as suggest here: http://stackoverflow.com/a/16721486/467314
+
+
+-->
+ it depends on the used DPI when you save. This is the list of working DPIs (checked range(50, 501, 1))

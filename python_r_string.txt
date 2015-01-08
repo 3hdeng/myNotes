@@ -1,0 +1,26 @@
+Bytes(b'', config=True, help="help msg")
+r"what's r-leading str" 
+u"means unicode"
+
+
+
+
+http://stackoverflow.com/questions/2081640/what-exactly-do-u-and-r-string-flags-do-in-python-and-what-are-raw-string-l
+
+
+//=== r"what's r-leading str", u"means unicode"
+
+There's not really any "raw string"; there are raw string literals, which are exactly the string literals marked by a 'r' before the opening quote.
+
+A "raw string literal" is a slightly different syntax for a string literal, in which a backslash, \, is taken as meaning "just a backslash" (except when it comes right before a quote that would otherwise terminate the literal) -- no "escape sequences" to represent newlines, tabs, backspaces, form-feeds, and so on. In normal string literals, each backslash must be doubled up to avoid being taken as the start of an escape sequence.
+
+
+This syntax variant exists mostly because the syntax of regular expression patterns is heavy with backslashes (but never at the end ...
+
+
+'r'...' is a byte string (in Python 2.*), ru'...' and ur'...' are Unicode strings (again, in Python 2.*), 
+
+
+The r doesn't change the type at all, it just changes how the string literal is interpreted. Without the r, backslashes are treated as escape characters. With the r, backslashes are treated as literal. Either way, the type is the same.
+
+

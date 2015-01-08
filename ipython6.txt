@@ -1,0 +1,126 @@
+x1=[1,2,3,4,5,6,7,8]
+y1=x1[1::3]
+x1,y1
+Out[14]:
+([1, 2, 3, 4, 5, 6, 7, 8], [2, 5, 8])
+
+[i::s] === [i:end_arr:s]
+[-1] === [last]
+[0] === [first]
+[:-1] === [0:-1] === [all-1ast]
+[0:] ===[0:end]== [all]
+
+
+//===
+matplotlib.cm.get_cmap
+matplotlib.pyplot.get_cmap
+
+x, (120,)
+y, (100,1)
+x+y= (100,120)
+
+//=== http://stackoverflow.com/questions/9406400/how-can-i-use-a-pre-made-color-map-for-my-heat-map-in-matplotlib
+ tried doing this:
+
+myHeatMap.imshow(heatMap, extent=ext, cmap=get_cmap(cm.datad["Spectral"]))
+However, the Python interpreter complains
+
+in get_cmap
+if name in cmap_d:
+    TypeError: unhashable type: 'dict'
+
+
+http://stackoverflow.com/questions/8931268/using-colormaps-to-set-color-of-line-in-matplotlib
+Using a ScalarMappable is an improvement over the approach presented 
+
+
+//===
+a=[1,2 ,3]
+b=[5,6,7].reshape(-1,1)
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-5-5f1e974f99fb> in <module>()
+      1 a=[1,2 ,3]
+----> 2 b=[5,6,7].reshape(-1,1)
+
+AttributeError: 'list' object has no attribute 'reshape'
+
+
+//===
+b=(5,6,7).reshape(-1,1)
+
+AttributeError: 'tuple' object has no attribute 'reshape'
+
+
+
+//===
+In [10]:
+
+a=[1,2 ,3]
+b=np.array([5,6,7,8]).reshape(-1,1)
+In [11]:
+
+c= a+b
+In [12]:
+
+print c
+ 
+[[ 6  7  8]
+ [ 7  8  9]
+ [ 8  9 10]
+ [ 9 10 11]]
+
+
+
+
+
+//=== show colormaps
+http://wiki.scipy.org/Cookbook/Matplotlib/Show_colormaps
+
+
+from pylab import *
+from numpy import outer
+rc('text', usetex=False)
+a=outer(arange(0,1,0.01),ones(10))
+figure(figsize=(10,5))
+subplots_adjust(top=0.8,bottom=0.05,left=0.01,right=0.99)
+maps=[m for m in cm.datad if not m.endswith("_r")]
+maps.sort()
+l=len(maps)+1
+for i, m in enumerate(maps):
+    subplot(1,l,i+1)
+    axis("off")
+    imshow(a,aspect='auto',cmap=get_cmap(m),origin="lower")
+    title(m,rotation=90,fontsize=10)
+
+plot.show()
+#savefig("colormaps.png",dpi=100,facecolor='gray')
+
+
+
+//=== range(), arange()
+*** range() only accept integer step
+*** range() return list
+*** arange() return array
+
+ print range(0,1,0.2)
+      4 #print a
+
+TypeError: range() integer step argument expected, got float.
+
+
+
+x= ones(5)
+print type(x)
+
+y= arange(0,1, 0.2)
+print type(y)
+
+z= range(0,10,2 )
+print type(z)
+
+<type 'numpy.ndarray'>
+<type 'numpy.ndarray'>
+<type 'list'>
+
+

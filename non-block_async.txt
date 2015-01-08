@@ -1,0 +1,32 @@
+
+http://www.tornadoweb.org/en/stable/guide/async.html
+Tornado is one of Facebook’s open source technologies. It is available under the Apache License, Version 2.0.
+
+
+Asynchronous and non-Blocking I/O
+Real-time web features require a long-lived mostly-idle connection per user. In a traditional synchronous web server, this implies devoting one thread to each user, which can be very expensive.
+
+To minimize the cost of concurrent connections, Tornado uses a single-threaded event loop. This means that all application code should aim to be asynchronous and non-blocking because only one operation can be active at a time.
+
+The terms asynchronous and non-blocking are closely related and are often used interchangeably, but they are not quite the same thing.
+
+
+//=== blocking
+
+A function blocks when it waits for something to happen before returning. A function may block for many reasons: network I/O, disk I/O, mutexes, etc
+
+A function can be blocking in some respects and non-blocking in others. 
+For example, tornado.httpclient in the default configuration blocks on DNS resolution 
+but not on other network access (to mitigate this use ThreadedResolver or a tornado.curl_httpclient with a properly-configured build of libcurl). 
+
+In the context of Tornado we generally talk about blocking 
+in the context of network I/O, 
+although all kinds of blocking are to be minimized.
+
+
+
+//=== async
+An asynchronous function returns before it is finished, and generally causes 
+some work to happen in the background;
+
+??? asynchronous functions by definition interact differently with their callers

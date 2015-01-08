@@ -1,0 +1,27 @@
+//=== Install ffmpeg in Ubuntu 12.04 LTS
+
+http://askubuntu.com/questions/426543/install-ffmpeg-in-ubuntu-12-04-lts
+
+sudo apt-get install libav-tools
+or
+
+sudo apt-get install ffmpeg
+But then I realize it is not the correct version since it doesn't support for -filter_complex and few other functions.
+
+After a few hours researcher I found real ffmpeg and I succeed with video conversion as well. As per that article, it is suggesting we need to build it our own.
+
+https://trac.ffmpeg.org/wiki/UbuntuCompilationGuide
+
+
+//===
+download the latest ffmpeg static build(32/64) with given link and follow the instructions.
+
+http://ffmpeg.gusari.org/static/
+
+Download and extract the latest archive
+place the ffmpeg where ever you need to run that command
+Run ffmpeg using: ./ffmpeg
+
+
+//=== 32bit linux ffmpeg
+http://ffmpeg.gusari.org/static/32bit/ffmpeg.static.32bit.latest.tar.gz

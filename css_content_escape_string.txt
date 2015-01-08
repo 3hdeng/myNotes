@@ -1,0 +1,64 @@
+//=== http://stackoverflow.com/questions/190396/adding-html-entities-using-css-content
+
+I have a number of links which I make into a breadcrumb style list by adding an arrow before each.
+
+<div class="breadcrumbs">
+    <a>One</a>
+    <a>Two</a>
+    <a>Three</a>
+</div>
+Which has the following style applied to it:
+
+.breadcrumbs a:before {
+    content: '> ';
+}
+The problem is that when the breadcrumb list gets long and wraps to the next line, the arrow is left on the preceding line. The obvious solution is to change the space into a non-breaking space, but this doesn't work:
+
+.breadcrumbs a:before {
+    content: '>&nbsp;';
+}
+It actually outputs &nbsp; onto the screen. I've got around this with other strange characters (like ») by pasting the character in directly, but how do you paste a &nbsp; ?
+
+
+-->
+You have to use the escaped unicode :
+
+Like
+
+.breadcrumbs a:before {
+    content: '>\0000a0';
+}
+
+
+
+//===
+content:'>\a0 ';          /* or */
+content:'>\0000a0';       /* because you'll find: */
+content:'No\a0 Break';    /* and */
+content:'No\0000a0Break'; /* becomes No&nbsp;Break as opposed to below */
+
+content:'No\00a0Break'   /* becomes No&#2571;reak */
+It takes the B into the hex escaped characters. The same occurs with 0-9a-fA-F.
+
+
+-->
+Thus, to display a space after an escaped character, use two spaces in the stylesheet –
+
+.breadcrumbs a:before {
+  content: '>\a0  foo';
+}
+– or make it explicit:
+
+.breadcrumbs a:before {
+  content: '>\a0\20 foo';
+}
+
+
+//=== http://www.w3schools.com/cssref/pr_gen_content.asp
+<style>
+p:before
+{
+content:url(smiley.gif);
+}
+</style>
+</head>

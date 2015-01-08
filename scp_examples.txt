@@ -1,0 +1,3 @@
+git bash on c:/user/eltonden/Downloads
+
+$ scp -i ssh22.pem ../Documents/ipyt*.txt ubuntu@3hd.me:

@@ -1,0 +1,45 @@
+js exclamation mark + function
+
+http://stackoverflow.com/questions/3755606/what-does-the-exclamation-mark-do-before-the-function
+
+What does the exclamation mark do before the function?
+
+avaScript syntax 101. Here is a function declaration:
+
+function foo() {}
+Note that there's no semicolon: this is a statement; 
+you need a separate invocation of foo() to actually run the function.
+
+
+
+On the other hand, !function foo() {} is an expression, but that still doesn't invoke the function, but we can now use !function foo() {}() to do that, as () has higher precedence than !
+
+
+*** what '!' is doing is saving a byte per function expression; 
+a more readable way of writing it would be this:
+(function(){})();
+
+
+
+
+//===
+The function:
+
+function(){}
+??? returns nothing (or undefined).
+
+*** Sometimes we want to call a function right as we create it. You might be tempted to try this:
+function(){}()
+but it results in a SyntaxError.
+
+
+Using the ! operator before the function causes it to be treated as an expression, so we can call it:
+
+!function(){}()
+??? This will return true: the boolean opposite of the return value of  "function(){}", 
+in this case true, because !undefined is true. 
+
+
+If you want the actual return value to be the result of the call, then try doing it this way:
+
+(function () {})()

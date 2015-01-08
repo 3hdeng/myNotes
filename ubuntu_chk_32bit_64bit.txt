@@ -1,0 +1,39 @@
+How do I check if I have a 32-bit or a 64-bit OS?
+
+http://askubuntu.com/questions/41332/how-do-i-check-if-i-have-a-32-bit-or-a-64-bit-os
+
+//===
+/bin/uname -m
+You will typically get:
+
+i686
+for 32-bit (maybe 'i586' is an possibility too?), and:
+
+x86_64
+for 64-bit.
+
+
+
+
+//===
+uname -a
+
+Result for 32-bit Ubuntu:
+
+Linux discworld 2.6.38-8-generic #42-Ubuntu SMP Mon Apr 11 03:31:50 UTC 2011 i686 i686 i386 GNU/Linux
+
+whereas the 64-bit Ubuntu will show:
+
+Linux discworld 2.6.38-8-generic #42-Ubuntu SMP Mon Apr 11 03:31:50 UTC 2011 x86_64 x86_64 x86_64 GNU/Linux
+
+or
+
+file /sbin/init
+
+Result for 32-bit Ubuntu:
+
+/sbin/init: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.15, stripped
+
+whereas for the 64-bit version it would look like:
+
+/sbin/init: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.15, stripped

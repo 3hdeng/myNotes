@@ -1,0 +1,97 @@
+'dd' to delete a cell
+[Q] how to run ipython notebook cells at one time?
+[Q] how to run a whole ipython notebook instead of an indivisual cell?
+
+i'm using Notebook 0.13. Could you add keyboard shortcuts for
+
+Print View
+Run All
+
+-->
+Unfortunately, this has become extremely tedious in the new interface:
+
+(1) hunt for Restart in Kernel
+(2) go to the last entry in Cell, select a submenu, clear all output
+(3) go to the Cell menu again and select Run All
+
+
+-->
+CTRL M, R shortcut for "run all cells" in the notebook #4319
+Matthias Bussonnier
+Owner
+Carreau commented on Aug 23
+let go Ctrl after pressing M.
+
+???
+press Ctrl
+press M
+release M
+Release Ctrl
+Press R.
+
+
+-->
+Cell menu -> Run -> All
+
+
+
+//=== interrupt / restart
+At certain moments, it may be necessary to interrupt a calculation which is taking too long to complete. 
+This may be done with the Kernel | Interrupt menu option, 
+or 
+Ctrl-m i keyboard shortcut. 
+
+to restart the whole computational process, with the
+Kernel | Restart menu option 
+or 
+Ctrl-m . shortcut.
+
+
+//=== http://nbviewer.ipython.org/github/ipython/ipython/blob/1.x/examples/notebooks/Cell%20Magics.ipynb
+In [1]: %lsmagic
+
+
+The %%writefile magic is a very useful tool that writes the cell contents as a named file:
+
+In [8]:
+%%writefile foo.py
+print('Hello world')
+Writing foo.py
+
+In [9]:
+%run foo
+Hello world
+
+
+
+//===
+Magics for running code under other interpreters
+IPython has a %%script cell magic, which lets you run a cell in a subprocess of any interpreter on your system, such as: bash, ruby, perl, zsh, R, etc.
+
+In [10]:
+%%script python
+import sys
+print 'hello from Python %s' % sys.version
+hello from Python 2.7.2 (default, Oct 11 2012, 20:14:37) 
+[GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)]
+
+In [11]:
+%%script python3
+import sys
+print('hello from Python: %s' % sys.version)
+hello from Python: 3.3.1 (v3.3.1:d9893d13c628, Apr  6 2013, 11:07:11) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+
+
+
+hese are all equivalent to %%script <name>
+
+In [12]:
+%%ruby
+puts "Hello from Ruby #{RUBY_VERSION}"
+Hello from Ruby 1.9.3
+
+In [13]:
+%%bash
+echo "hello from $BASH"
+hello from /usr/local/bin/bash

@@ -1,0 +1,60 @@
+//=== C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\static\notebook\js\menubar.js
+
+ this.element.find('#run_all_cells').click(function () {
+            IPython.notebook.execute_all_cells();
+        });
+
+
+//===
+MenuBar.prototype.bind_events = function () {
+        //  File
+***         var that = this;
+        this.element.find('#new_notebook').click(function () {
+            IPython.notebook.new_notebook();
+        });
+        this.element.find('#open_notebook').click(function () {
+            window.open(utils.url_join_encode(
+                IPython.notebook.base_url,
+                'tree',
+                IPython.notebook.notebook_path
+            ));
+        });
+
+
+
+//=== C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\templates\notebook.html
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Cell</a>
+            <ul id="cell_menu" class="dropdown-menu">
+                <li id="run_cell" title="Run this cell, and move cursor to the next one">
+                    <a href="#">Run</a></li>
+                <li id="run_cell_select_below" title="Run this cell, select below">
+                    <a href="#">Run and Select Below</a></li>
+                <li id="run_cell_insert_below" title="Run this cell, insert below">
+                    <a 
+
+
+
+//===
+static/notebook/js/maintoolbar.js 
+
+ this.add_buttons_group([
+                {
+                    id : 'run_b',
+                    label : 'Run Cell',
+                    icon : 'icon-play',
+                    callback : function () {
+                        // emulate default shift-enter behavior
+                        IPython.notebook.execute_cell_and_select_below();
+                    }
+                },
+                {
+                    id : 'interrupt_b',
+                    label : 'Interrupt',
+                    icon : 'icon-stop',
+                    callback : function () {
+                        IPython.notebook.session.interrupt_kernel();
+                        }
+                },
+
+

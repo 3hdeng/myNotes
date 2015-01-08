@@ -1,0 +1,17 @@
+Application Settings
+Keep the "Consumer Secret" a secret. This key should never be human-readable in your application.
+Consumer Key (API Key)	jwr98GRn9myEUF2eVUnqDfCJr
+Consumer Secret (API Secret)	tpKYOQVFn2UlbHgJwWwZg0CJqT3idaAkOYUBpPc8v5VYceq4CQ
+Access Level	Read-only (modify app permissions)
+Owner	kelfdeng
+Owner ID	2917288669
+
+
+Access level	Read-only (modify app permissions)
+Consumer Key (API Key)	jwr98GRn9myEUF2eVUnqDfCJr (manage keys and access tokens)
+Callback URL	None
+Sign in with Twitter	No
+App-only authentication	https://api.twitter.com/oauth2/token
+Request token URL	https://api.twitter.com/oauth/request_token
+Authorize URL	https://api.twitter.com/oauth/authorize
+Access token URL	https://api.twitter.com/oauth/access_token

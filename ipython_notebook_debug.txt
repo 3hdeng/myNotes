@@ -1,0 +1,41 @@
+http://blog.jetbrains.com/pycharm/2014/10/second-pycharm-4-eap-ipython-notebook-attach-to-process-and-more/
+
+The most exciting announcement of this fresh preview and the whole upcoming release of PyCharm 4 is that the IPython notebook functionality is now fully supported in PyCharm!
+It has been one of the most top voted feature requests in PyCharm’s public tracker for quite a long time and now we’re proud to introduce this brand new integration to you.
+
+Note that the IPython Notebook integration is available in both PyCharm Community Edition and PyCharm Professional Edition.
+
+Another great feature of the second PyCharm 4 preview build is that Pycharm’s debugger can now attach to a process!
+
+
+-->
+File | Settings | Tools | IPython Notebook
+
+Python Notebook URL
+In the text field, specify URL of the IPython Notebook server. This URL is used to run a cell. If this field is left blank, then nothing is specified by default in the Start IPython Notebook dialog, and you will have to type the required URL yourself.
+
+
+-->
+File | Settings | Console 
+
+
+//===
+C:\Users\eltonden\Anaconda\python.exe "C:\JetBrains\PyCharm 4.0.3\helpers\pydev\pydevd.py" --multiproc --client 127.0.0.1 --port 53681 --file C:/Users/eltonden/Anaconda/Scripts/ipython-script.py
+pydev debugger: process 4432 is connecting
+
+Connected to pydev debugger (build 139.781)
+
+
+python ipython-script.py notebook
+--> breakpoint in notebookapp.py
+
+line#847
+ if browser:
+                b = lambda : browser.open(url_path_join(self.connection_url, uri),
+                                          new=2)
+                threading.Thread(target=b).start()
+        try:
+            ioloop.IOLoop.instance().start()
+        except KeyboardInterrupt:
+
+

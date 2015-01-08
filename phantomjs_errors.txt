@@ -1,0 +1,45 @@
+Error opening url "http://ts.ruten.com.tw/ts_async.js?1": Operation canceled
+
+
+
+FAIL to load the address
+Error opening url "http://www.ruten.com.tw/images/register_down_p.gif": Operation canceled
+Unsafe JavaScript attempt to access frame with URL about:blank from frame with URL file://netlog.js. Domains, protocols and ports must match.
+
+Unsafe JavaScript attempt to access frame with URL about:blank from frame with URL file://netlog.js. Domains, protocols and ports must match.
+ 
+
+//===
+//=== amazon ec2 ubuntu 14.04 + phantomjs + segmentation fault
+-->
+phantomjs segmentation fault on amazon ec2
+--> xxx too little memory, need 1G or more?
+--> install not finished, 
+tar xvjf phantom---.tar.bz2 
+will take some time...
+
+
+
+//===
+phantomjs run as sudo
+
+Using PhantomJS on host without root access
+
+ There is README.md file in the top directory when extracted which will give you some ideas for use. You don't need to be root to use it 
+
+
+
+//===
+requestData['Content-Type'] == 'image/gif'
+
+
+--web-security=[true|false] enables web security and forbids cross-domain XHR (default is true). Also accepted: [yes|no].
+--webdriver starts in 'Remote WebDriver mode' (embedded GhostDriver): '[[:]]' (default '127.0.0.1:8910')
+--webdriver-selenium-grid-hub URL to the Selenium Grid HUB: 'URLTOHUB' (default 'none') (NOTE: works only together with '--webdriver')
+--load-images=[true|false]
+
+
+//=== http://stackoverflow.com/questions/21611434/what-exactly-does-the-phantomjs-option-web-security-false-turn-off
+It is affecting at least cross-domain XHR checks, and HTTPS SSL certificate checks (i.e it will accept self-signed and expired certificates).
+
+To be more precise, the option just enables the Qt WebKit WebSecurityEnabled option, and that in turn just enables the webkit security checks. Poking around the source I think it might also enable access to file:// URLs, but I'm not 100% sure on that.

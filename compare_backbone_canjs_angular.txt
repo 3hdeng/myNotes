@@ -1,0 +1,70 @@
+js client mvc
+//=== 2014
+https://www.airpair.com/js/javascript-framework-comparison
+
+in favor of angular
+
+//=== 2013,  in favor of canjs
+compare backbone, angular
+http://sporto.github.io/blog/2013/04/12/comparison-angular-backbone-can-ember/
+
+Selecting a JavaScript MVC framework can be hard work. There are so many factors to consider ...
+To have an idea of all the possible alternatives have a look at TodoMVC.
+
+
+//===
+Feature	    Angular	Backbone	CanJS	Ember
+Observables	y	y	y	y
+Routing	y	y	y	y
+View bindings	y		y	y
+Two way bindings	y	–	y	y
+Partial views	y	–	y	y
+Filtered list views	y	–	y	y
+
+
+
+Observables: Objects that can be observed for changes.
+
+Routing: Pushing changes to the browser url hash and listening for changes to act accordingly.
+
+View bindings: Using observable objects in views, having the views automatically refresh when the observable object change.
+
+Two way bindings: Having the view push changes to the observable object automatically, for example a form input.
+
+Partial views: Views that include other views.
+
+Filtered list views: Having views that display objects filtered by a certain criteria.
+
+Update 2014-07-08: As of version 2.0 CanJS now supports two way bindings.
+
+
+***  note that Backbone can do most of this things with a lot of manual code or with the help of plug-ins. But I am only considering the available features in the core framework.
+
+
+
+//=== flexibility
+Backbone is the most flexible framework as it is the one with the less conventions and opinions. You are required to make a lot of decisions when using Backbone.
+
+CanJS is almost as flexible as Backbone as it allows you to easily integrate other libraries with minimum effort. With CanJS you can even use a totally different rendering engine if you want,
+
+
+
+//===
+Angular can do some amazing things – like two-way bindings – without having to learn much. And it looks quite easy at first sight. But after you have learnt the very basics it is quite a steep learning curve from there. It is a complex framework with lots of peculiarities. Reading the documentation is not easy as there is a lot of Angular specific jargon and a serious lack of examples.
+
+
+//===
+The basic of Backbone are quite easy to learn. But soon you find that there are not enough opinions there to know how to best structure your code. You will need to watch or read a few tutorials to learn some best Backbone practices. Also you will find that you will probably need to learn another library on top of Backbone (e.g. Marionette or Thorax) to get things done. So I don’t consider Backbone the easier framework to learn.
+
+
+*** CanJS
+
+CanJS is in comparison the easiest to learn of the bunch. Just by reading the one page website (http://canjs.us/) you will know most of what you need to be productive. There is of course more to learn, but I only had the need to reach for help in rare occasions (tutorials, forum, irc).
+
+
+//=== developer productivity
+
+
+
+//=== mature
+Backbone has a ton of websites built with it. Its code base hasn’t had major changes in the lasts two year which is a great thing from the maturity perspective.

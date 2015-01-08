@@ -1,0 +1,90 @@
+﻿@media only screen and (max-width: 480px) {
+
+//some code to take away left or right margins
+
+.span3 {
+    width: 50%; //50% minus any margins, of course
+}
+
+
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Grid Layout Generator</title>
+<style type='text/css'>
+.wrapper{
+   position: relative;
+   float: left;
+   left: 47px;
+   width: 1250px;
+   margin-bottom: 10px;
+   background-color: #cccccc
+}
+.left1{
+   position: relative;
+   float: left;
+   left: 5px;
+   width: 240px;
+   height: 240px;
+   background-color: #828282
+}
+.left2{
+   position: relative;
+   float: left;
+   left: 15px;
+   width: 240px;
+   height: 240px;
+   background-color: #828282
+}
+.left3{
+   position: relative;
+   float: left;
+   left: 25px;
+   width: 240px;
+   height: 240px;
+   background-color: #828282
+}
+.left4{
+   position: relative;
+   float: left;
+   left: 35px;
+   width: 240px;
+   height: 240px;
+   background-color: #828282
+}
+.left5{
+   position: relative;
+   float: left;
+   left: 45px;
+   width: 240px;
+   height: 240px;
+   background-color: #828282
+}
+body {
+   border-width: 0px;
+   padding: 0px;
+   margin: 0px;
+   font-size: 90%;
+   background-color: #e7e7de
+}
+</style>
+</head>
+<body>
+	<div class="wrapper">
+	     <div class="left1">
+	     </div>
+	     <div class="left2">
+	     </div>
+	     <div class="left3">
+	     </div>
+	     <div class="left4">
+	     </div>
+	     <div class="left5">
+	     </div>
+	 </div> 
+</body>
+</html>

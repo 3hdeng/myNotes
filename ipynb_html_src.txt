@@ -1,0 +1,217 @@
+//=== C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\static\notebook\js\menubar.js
+
+ this.element.find('#run_all_cells').click(function () {
+            IPython.notebook.execute_all_cells();
+        });
+
+
+//===
+C:\Users\eltonden\Anaconda\pkgs\ipython-2.3.1-py27_0\Lib\site-packages\IPython\html\static\notebook\js\notebook.js
+ Notebook.prototype.execute_all_cells = function () {
+        this.execute_cell_range(0, this.ncells());
+        this.scroll_to_bottom();
+    };
+
+    /**
+     * Execute a contiguous range of cells.
+     * 
+     * @method execute_cell_range
+     * @param {Number} start Index of the first cell to execute (inclusive)
+     * @param {Number} end Index of the last cell to execute (exclusive)
+     */
+    Notebook.prototype.execute_cell_range = function (start, end) {
+        this.command_mode();
+        for (var i=start; i<end; i++) {
+            this.select(i);
+            this.execute_cell();
+        }
+    };
+
+
+
+//===
+Notebook.prototype.execute_cell = function () {
+        // mode = shift, ctrl, alt
+        var cell = this.get_selected_cell();
+        var cell_index = this.find_cell_index(cell);
+        
+        cell.execute();
+        this.command_mode();
+        this.set_dirty(true);
+    };
+
+
+
+//===
+  Notebook.prototype.get_cell = function (index) {
+        var result = null;
+        var ce = this.get_cell_element(index);
+        if (ce !== null) {
+            result = ce.data('cell');
+        }
+        return result;
+    };
+
+Notebook.prototype.get_cell_element = function (index) {
+        var result = null;
+        var e = this.get_cell_elements().eq(index);
+        if (e.length !== 0) {
+            result = e;
+        }
+        return result;
+    };
+
+
+Notebook.prototype.get_cell_elements = function () {
+        return this.container.children("div.cell");
+    };
+
+
+
+//===
+jQuery.data()
+
+
+
+//===
+Notebook.prototype.execute_cell = function () {
+        // mode = shift, ctrl, alt
+        var cell = this.get_selected_cell();
+        var cell_index = this.find_cell_index(cell);
+        
+        cell.execute();
+        this.command_mode();
+        this.set_dirty(true);
+    };
+
+
+
+
+CodeCell.prototype.execute
+TextCell.prototype.execute
+Kernel.prototype.execute
+
+//===
+CodeCell.prototype.execute = function () {
+        this.output_area.clear_output();
+        
+        // Clear widget area
+        this.widget_subarea.html('');
+        this.widget_subarea.height('');
+        this.widget_area.height('');
+        this.widget_area.hide();
+
+        this.set_input_prompt('*');
+        this.element.addClass("running");
+        if (this.last_msg_id) {
+            this.kernel.clear_callbacks_for_msg(this.last_msg_id);
+        }
+        var callbacks = this.get_callbacks();
+        
+        var old_msg_id = this.last_msg_id;
+        this.last_msg_id = this.kernel.execute(this.get_text(), callbacks, {silent: false, store_history: true});
+        if (old_msg_id) {
+            delete CodeCell.msg_cells[old_msg_id];
+        }
+        CodeCell.msg_cells[this.last_msg_id] = this;
+    };
+
+
+
+//===
+icon: 'icon-play'
+
+
+C:\Users\eltonden\Anaconda\pkgs\ipython-2.3.1-py27_0\Lib\site-packages\IPython\html\static\notebook\js\toolbar.js
+ToolBar.prototype.add_buttons_group = function (list, group_id) {
+        var btn_group = $('<div/>').addClass("btn-group");
+        if( group_id !== undefined ) {
+            btn_group.attr('id',group_id);
+        }
+        var el;
+        for(var i=0; i < list.length; i++) {
+            el = list[i];
+            var button  = $('<button/>')
+                .addClass('btn')
+                .attr("title", el.label)
+                .append(
+                    $("<i/>").addClass(el.icon)
+                );
+            var id = el.id;
+            if( id !== undefined )
+                button.attr('id',id);
+            var fun = el.callback;
+            button.click(fun);
+            btn_group.append(button);
+        }
+        $(this.selector).append(btn_group);
+    };
+
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\static\notebook\js\maintoolbar.js
+this.add_buttons_group([
+                {
+                    id : 'run_b',
+                    label : 'Run Cell',
+                    icon : 'icon-play',
+                    callback : function () {
+                        // emulate default shift-enter behavior
+                        IPython.notebook.execute_cell_and_select_below();
+                    }
+                },
+                {
+                    id : 'runall_b',
+                    label : 'Run All Cells',
+                    icon : 'icon-play-play',
+                    callback : function () {
+                        IPython.notebook.execute_all_cells();
+                    }
+                },
+
+
+
+
+
+//=== C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\static\style\style.min.css
+
+.icon-play{background-position:-264px -72px}
+.icon-play-circle{background-position:-192px -24px}
+
+
+http://www.w3schools.com/cssref/pr_background-position.asp
+
+
+
+//===
+background-position: value;
+Property Values
+Value	Description	Play it
+left top
+left center
+left bottom
+right top
+right center
+right bottom
+center top
+center center
+center bottom	If you only specify one keyword, the other value will be "center"	
+
+
+x% y%,	The first value is the horizontal position and the second value is the vertical. The top left corner is 0% 0%. The right bottom corner is 100% 100%. If you only specify one value, the other value will be 50%. . Default value is: 0% 0%	
+
+xpos ypos,	The first value is the horizontal position and the second value is the vertical. The top left corner is 0 0. Units can be pixels (0px 0px) or any other CSS units. If you only specify one value, the other value will be 50%. You can mix % and positions	
+
+initial,	Sets this property to its default value. Read about initial	
+
+inherit,	Inherits this property from its parent element. Read about inherit
+
+
+
+//=== http://www.w3.org/wiki/CSS_background_images
+When percentages and pixels are used, the starting point is always the top left corner of the HTML element, although the way image positioning works with pixels and percentages is rather different. 
+
+Pixels always move the image a set number of pixels towards the bottom and right of the containing box (or towards the top and left if they are negative values), regardless of the size of the image and the containing box. 
+
+Percentages on the other hand move the image a percentage of the difference between the containing box size, and the image size. If the image and the containing box are the same size, percentages won’t move the image at all.

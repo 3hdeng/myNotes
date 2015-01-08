@@ -1,0 +1,56 @@
+Backbone's only hard dependency is Underscore.js ( >= 1.5.0). 
+For RESTful persistence, history support via Backbone.Router and DOM manipulation with Backbone.View, include jQuery, and 
+json2.js for older Internet Explorer support
+
+
+http://backbonejs.org/docs/todos.html
+
+annotated source code
+http://backbonejs.org/docs/todos.html
+
+
+this.save();
+this.get(key);
+this.where({dict});
+
+
+Underscore.js
+
+
+//=== http://jgn.herokuapp.com/2010/10/25/creating-localtodoscom----a-short-story/
+
+It took quite a bit of fiddling around to get acquainted with Backbone.js, there weren’t any example app out there, only bits and pieces in the documentation. In a desperate move, I went to the #documentcloud channel on freenode, hoping to talk to some of the developers of Backbone.js. I was in luck as I spoke with its creator, Jeremy Ashkenas, and he gladly answered my questions about both Backbone.js and Javascript in general.
+
+
+Backbone.js was suggesting in its documentation to override the Backbone.Sync function to plug in your own storage (localStorage, websockets, etc.). However, it had not been done before. It was surprisingly easy. Backbone.js doesn’t get in the way, it’s so elegantly coded, perfectly documented and its creator is really friendly.
+
+
+Quite simply a localStorage adapter for Backbone. It's a drop-in replacement for Backbone.Sync() to handle saving to a localStorage database.
+
+
+*** usage of backbone.localStorage
+Include Backbone.localStorage after having included Backbone.js:
+
+<script type="text/javascript" src="backbone.js"></script>
+<script type="text/javascript" src="backbone.localStorage.js"></script>
+Create your collections like so:
+
+window.SomeCollection = Backbone.Collection.extend({
+
+  localStorage: new Backbone.LocalStorage("SomeCollection"), // Unique name within your app.
+
+  // ... everything else is normal.
+
+});
+
+
+
+//===
+help you reduce boilerplate in your code and provide plenty of open source plugin solutions to common problems along the way.
+
+
+
+//===
+boilerplate?
+
+http://backbonetutorials.com/
