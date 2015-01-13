@@ -1,0 +1,85 @@
+ElementArrayFinder is used for operations on an array of elements (as opposed to a single element). The ElementArrayFinder is used to set up a chain of conditions that identify an array of elements
+element.all(by....)
+
+element.all(by.css('.items li')).then(function(items) {
+  expect(items.length).toBe(3);
+  expect(items[0].getText()).toBe('First');
+});
+
+
+
+
+ElementFinder
+element(by....)
+
+
+
+//=== http://angular.github.io/protractor/#/tutorial
+The describe and it syntax is from the Jasmine framework. browser is a global created by Protractor, which is used for browser-level commands such as navigation with browser.get.
+
+// spec.js
+describe('angularjs homepage', function() {
+  it('should have a title', function() {
+    browser.get('http://juliemr.github.io/protractor-demo/');
+
+    expect(browser.getTitle()).toEqual('Super Calculator');
+  });
+});
+
+
+// conf.js
+exports.config = {
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  specs: ['spec.js']
+}
+
+
+
+protractor conf.js
+
+
+
+
+//===
+ protractor: command not found
+
+
+
+//=== http://stackoverflow.com/questions/20050199/how-to-run-protractor
+
+You need to run it through node.
+
+So from the base of your project;
+
+> node node_modules\protractor\bin\protractor test\myConf.js
+-->
+$ node node_modules/protractor/bin/protractor test/myConf.js
+
+
+
+
+
+//=== protractor, console.log
+http://stackoverflow.com/questions/22082395/view-console-log-output-in-angular-protractor-jasmine-test
+
+***if you set a console.log() in your specs, you should see it in the terminal 
+
+
+???
+in order to keep the browser's window open you should try running Protractor in debug mode:
+
+$ <route-to-protractor> debug <route-to-conf-file>
+Then in your spec file add this line where you want the execution to stop:
+
+browser.debugger();
+In the Protractor debugger console, you can step over the stops by typing c or cont.
+
+More info here: https://github.com/angular/protractor/blob/master/docs/debugging.md
+
+n order to get the console content you can check how to do it in Protractor FAQ: https://github.com/angular/protractor/blob/master/docs/faq.md#how-can-i-get-hold-of-the-browsers-console
+
+Something like:
+
+browser.manage().logs().get('browser').then(function(browserLog) {
+  console.log('log: ' + require('util').inspect(browserLog));
+})

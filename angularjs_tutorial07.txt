@@ -1,0 +1,235 @@
+//=== https://docs.angularjs.org/tutorial/step_07
+bower.json
+--> angular-route
+
+
+$ npm insall
+
+
+
+
+//=== DI, dependency injector and providrer
+The injector only carries out the following steps :
+
+1. load the module definition(s) that you specify in your app
+2. register all Providers defined in these module definitions
+3. when asked to do so, inject a specified function and any necessary dependencies (services) that it lazily instantiates via their Providers.
+
+???
+Note: Providers can only be injected into config functions. Thus you could not inject $routeProvider into PhoneListCtrl.
+
+
+
+*** Services are defined by things called providers, 
+which is what you're creating when you use $provide
+
+
+
+//=== https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
+
+Defining a provider is done via the provider method on the $provide service, and you can get hold of the $provide service by asking for it to be injected into an application's config function.
+Now here's the trick. factory, provider, and value are all just shortcuts to define various parts of a provider--that is, they provide a means of defining a provider without having to type all that stuff out.
+
+
+var myMod = angular.module('myModule', []);
+
+myMod.provider("greeting", ...);
+myMod.factory("greeting", ...);
+myMod.value("greeting", ...);
+
+-->
+These all do the same thing as the more verbose form (but with less configurables for factory and value): 
+
+myMod.config(function($provide) {
+  $provide.provider('greeting', function(){...});  });
+
+
+
+
+//=== all these pieces of code are doing the exact same thing:
+
+myMod.provider('greeting', function() {
+  this.$get = function() {
+    return function(name) {
+      alert("Hello, " + name);
+    };
+  };
+});
+
+myMod.factory('greeting', function() {
+  return function(name) {
+    alert("Hello, " + name);
+  };
+});
+
+myMod.value('greeting', function(name) {
+  alert("Hello, " + name);
+});
+
+
+--> define a new service called greeting; 
+we can inject a variable named greeting into any injectable function 
+and Angular will call the provider's $get function in order to return a new instance of the service.
+
+-->
+myMod.controller('MainController', function($scope, greeting) {
+  $scope.onClick = function() {
+    greeting('Ford Prefect');
+  };
+});
+
+
+
+//=== $injector
+Each AngularJS application has a single $injector that gets created 
+when the application first starts; you can get a hold of it by injecting $injector into any injectable function (yes, $injector knows how to inject itself!)
+
+* get a service by its name
+var greeting = $injector.get('greeting');
+greeting('Ford Prefect');
+
+
+* injecting services into functions;
+var myFunction = function(greeting) {
+  greeting('Ford Prefect');
+};
+$injector.invoke(myFunction);
+
+
+* the injector will only create an instance of a service once. It then caches whatever the provider returns by the service's name; the next time you ask for the service, you'll actually get the exact same object.
+
+
+
+you can inject services into any function that is called with $injector.invoke. This includes
+
+1. controller definition functions
+2. directive definition functions
+3. filter definition functions
+4. the $get methods of providers (aka the factory definition functions)
+
+
+*** Since constant and value always return a static value, they are not invoked via the injector, and thus you cannot inject them with anything.
+
+
+
+*** First, Angular runs your application in two-phases--
+the config and run phases. 
+
+The config phase, as we've seen, is where you can set up any providers as necessary. 
+This is also where directives, controllers, filters, and the like get set up. 
+
+The run phase is where Angular actually compiles your DOM and starts up your app.
+
+
+ou can add additional code to be run in these phases with the 
+myMod.config and myMod.run functions--each take a function to do during that specific phase.
+
+*** during the config phase, only providers can be injected 
+(with the exception of the services in the AUTO module--$provide and $injector).
+
+
+
+*** constant  are allowed to be injected inside config blocks
+ (this is how they differ from value). 
+They are accessed by their name alone (no Provider suffix necessary).
+
+
+
+
+//===
+Whenever you defined a provider for a service, that provider gets named serviceProvider, where service is the name of the service.
+
+
+myMod.provider('greeting', function() {
+  var text = 'Hello, ';
+
+  this.setText = function(value) {
+    text = value;
+  };
+
+  this.$get = function() {
+    return function(name) {
+      alert(text + name);
+    };
+  };
+});
+
+myMod.config(function(greetingProvider) {
+  greetingProvider.setText("Howdy there, ");
+});
+
+myMod.run(function(greeting) {
+  greeting('Ford Prefect');
+});
+
+
+https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
+
+
+
+
+
+//=== https://docs.angularjs.org/tutorial/step_07
+  <script src="bower_components/angular-route/angular-route.js"></script>  --> ngRoute
+  <script src="js/app.js"></script>  --> app root module
+
+//=== split index.html into view-hierarchy
+ removed most of the code in the index.html template and replaced it with 
+a single line containing a div with the ng-view attribute. 
+<div ng-view></div>
+The code that we removed was placed into the app/partials/phone-list.html
+
+
+
+
+
+
+//===
+app/js/app.js:
+
+var phonecatApp = angular.module('phonecatApp', [
+  'ngRoute',
+  'phonecatControllers'
+]);
+
+...
+Notice the second argument passed to angular.module, ['ngRoute', 'phonecatControllers']. This array lists the modules that phonecatApp depends on.
+
+...
+
+phonecatApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/phones', {
+        templateUrl: 'partials/phone-list.html',
+        controller: 'PhoneListCtrl'
+      }).
+      when('/phones/:phoneId', {
+        templateUrl: 'partials/phone-detail.html',
+        controller: 'PhoneDetailCtrl'
+      }).
+      otherwise({
+        redirectTo: '/phones'
+      });
+  }]);
+Using the phonecatApp.config() method, we request the $routeProvider to be injected into our config function and use the $routeProvider.when() method to define our routes.
+
+ when('/phones/:phoneId', 
+where :phoneId is a variable part of the URL
+
+localhost:8000/app/#/phones
+http://localhost:8000/app/#/phones/motorola-xoom-with-wi-fi
+
+
+
+
+//===
+var phonecatControllers = angular.module('phonecatControllers', []);
+
+
+phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
+  function($scope, $routeParams) {
+    $scope.phoneId = $routeParams.phoneId;
+  }]);
+
+

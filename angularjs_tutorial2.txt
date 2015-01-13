@@ -1,0 +1,88 @@
+The ng-repeat="phone in phones" attribute in the <li> tag is an 
+Angular repeater directive. 
+
+The repeater tells Angular to create a <li> element for each phone in the list using the <li> tag as the template.
+
+
+//===
+https://docs.angularjs.org/tutorial/step_02
+
+ For Angular apps, we encourage the use of the Model-View-Controller (MVC) design pattern to decouple the code and to separate concerns
+
+ <script src="js/controllers.js"></script>
+...
+<body ng-controller="PhoneListCtrl">
+
+  <ul>
+    <li ng-repeat="phone in phones">
+      <span>{{phone.name}}</span>
+      <p>{{phone.snippet}}</p>
+    </li>
+  </ul>
+
+</body>
+
+
+phones defined in
+app/js/controllers.js -->PhoneListCtrl controller -->  $scope.phones
+
+
+
+//=== Scope
+Angular uses scopes, along with the information contained in the template, data model, and controller, to keep models and views separate, but in sync.
+
+https://docs.angularjs.org/api/ng/type/$rootScope.Scope
+
+
+Angular provides a service, $controller, which will retrieve your controller by name. Here is the same test using $controller:
+
+test/unit/controllersSpec.js:
+
+describe('PhoneListCtrl', function(){
+
+  beforeEach(module('phonecatApp'));
+
+  it('should create "phones" model with 3 phones', inject(function($controller) {
+    var scope = {},
+        ctrl = $controller('PhoneListCtrl', {$scope:scope});
+
+    expect(scope.phones.length).toBe(3);
+  }));
+
+});
+
+
+
+//===
+we wrote all of the tests in this tutorial in Jasmine v1.3. You can learn about Jasmine on the Jasmine home page and at the Jasmine docs.
+
+
+
+
+//=== nested ng-repeat
+<table>
+    <thead>
+        <tr>
+            <th ng-repeat="field in headers">{{header}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in data">
+            <td ng-repeat="field in headers">{{ row[field] }}</td>
+        </tr>
+</table>
+
+
+//===
+<table>
+  <tr><th>rc number</th><th ng-repeat="k in [1, 2, 3, 4, 5, 6, 7]">{{k+1}}</th></tr>
+  <tr ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7]"><td ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7]">{{i+1}}, {{j+1}}</td></tr>
+</table>
+
+
+
+[non-work]
+<table>
+  <tr><th>rc number</th><th ng-repeat="k in [1, 2, 3, 4, 5, 6, 7]">{{k+1}}</th></tr>
+  <tr ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7]"><td ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7]">{{i+1, j+1}}</td></tr>
+</table>

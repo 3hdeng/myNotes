@@ -1,0 +1,80 @@
+//=== http://stackoverflow.com/questions/19941739/protractor-console-log 
+Using the new Protractor syntax to do console.log
+
+element(by.id('view-container')).getText().then(function(text) {
+  console.log(text);
+});
+
+
+
+
+//=== https://docs.angularjs.org/tutorial/step_08
+
+http://angular.github.io/protractor/#/api
+
+The following three expressions are equivalent.
+ element(by.css('.parent')).getWebElement();
+ browser.waitForAngular(); browser.driver.findElement(by.css('.parent'));
+ browser.findElement(by.css('.parent'));
+
+
+ var links = element.findElements(By.tagName('a'));
+
+http://angular.github.io/protractor/#/api?view=ElementFinder.prototype.all
+var items = element(by.css('.parent')).all(by.tagName('li'))
+
+<div class="parent">
+  <div class="child">
+    Child text
+    <div>{{person.phone}}</div>
+  </div>
+</div>
+
+
+
+  <div>{{person.phone}}</div>
+ element(by.binding('person.phone'));
+
+
+   element(by.css('.child'));
+expect(child.getText()).toBe('Child text\n555-123-4567');
+
+
+//=== $(cssSelector)
+ElementFinder.prototype.$
+
+
+<div class="count">
+  <span class="one">First</span>
+  <span class="two">Second</span>
+</div>
+Code
+
+var item = $('.count .two');
+expect(item.getText()).toBe('Second');
+
+
+
+//===
+
+<ul class="phone-thumbs">
+  <li ng-repeat="img in phone.images">
+    <img ng-src="{{img}}">
+  </li>
+</ul>
+var rows = element.all(by.repeater('img in phone.images'))
+
+var rows = element.all(by.repeater('cat in pets'));
+var firstCatName = element(by.repeater('cat in pets').
+    row(0).column('{{cat.name}}'));
+
+//=== 
+http://angular.github.io/protractor/#/tutorial
+
+http://angular.github.io/protractor/#/api?view=ProtractorBy.prototype.binding
+var span1 = element(by.binding('person.name'));
+expect(span1.getText()).toBe('Foo');
+
+// You can also use a substring for a partial match
+var span1alt = element(by.binding('name'));
+expect(span1alt.getText()).toBe('Foo');

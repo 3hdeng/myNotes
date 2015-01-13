@@ -93,3 +93,6 @@ The outer element of the editor. This should be used for the editor width, heigh
 The CodeMirror distributions comes with Emacs, Vim, and Sublime Text-style keymaps.
 
 Keys are identified either by name or by character. The CodeMirror.keyNames object defines names for common keys and associates them with their key codes. Examples of names defined here are Enter, F5, and Q
+
+
+When a map contains multi-stoke bindings or keys with modifiers that are not specified in the default order (Shift-Cmd-Ctrl-Alt), you must call CodeMirror.normalizeKeyMap on it before it can be used. This function takes a keymap and modifies it to normalize modifier order and properly recognize multi-stroke bindings. It will return the keymap itself.

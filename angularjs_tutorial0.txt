@@ -1,0 +1,75 @@
+//===
+https://docs.angularjs.org/tutorial
+git clone --depth=14 https://github.com/angular/angular-phonecat.git
+
+*** The --depth=14 option just tells Git to pull down only the last 14 commits. This makes the download much smaller and faster.
+
+cd angular-phonecat
+
+
+
+//=== https://docs.angularjs.org/tutorial/step_00
+angularjs tutorial
+
+
+Angular expression is a JavaScript-like code snippet that is evaluated by Angular in the context of the current model scope, rather than within the scope of the global context (window).
+
+Nothing here {{'yet' + '!'}}
+This line demonstrates two core features of Angular's templating capabilities:
+
+a binding, denoted by double-curlies {{ }}
+a simple expression 'yet' + '!' used in this binding.
+
+
+
+***
+Bootstrapping AngularJS apps automatically using the ngApp directive is very easy and suitable for most cases.
+
+There are 3 important things that happen during the app bootstrap:
+
+1. The injector that will be used for dependency injection is created.
+
+2. The injector will then create the root scope that will become the context for the model of our application.
+
+3. Angular will then "compile" the DOM starting at the ngApp root element, processing any directives and bindings found along the way.
+
+
+-->
+1. injector
+2. root scope context
+3. ngApp DOM compiling
+
+
+*** Most of the files in your working directory come from the 
+angular-seed project which is typically used to bootstrap new Angular projects. 
+
+
+
+//=== https://docs.angularjs.org/tutorial/step_00
+In angular-phonecat directory, run this command:
+
+git checkout -f step-0
+This resets your workspace to step 0 of the tutorial app.
+
+
+//===
+eltonden@WIN7X64 /c/workspaces/angular/angular-phonecat (master)
+$ git checkout -f step0
+error: pathspec 'step0' did not match any file(s) known to git.
+
+
+
+eltonden@WIN7X64 /c/workspaces/angular/angular-phonecat (master)
+$ git checkout -f step-0
+Note: checking out 'step-0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in thi
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Exampl
+
+  git checkout -b new_branch_name
+
+HEAD is now at 96a9b5b... step-0 bootstrap angular app

@@ -1,0 +1,43 @@
+//=== http://git-scm.com/docs/git-checkout
+The git checkout command is way to navigate existing branches
+
+
+-f
+--force
+When switching branches, proceed even if the index or the working tree differs from HEAD. This is used to throw away local changes.
+
+When checking out paths from the index, do not fail upon unmerged entries; instead, unmerged entries are ignored.
+
+
+
+//===
+ being in detached HEAD state. It means simply that HEAD refers to a specific commit, as opposed to referring to a named branch.
+
+
+
+
+$ git checkout v2.0  # or
+$ git checkout master^^
+
+   HEAD (refers to commit 'b')
+    |
+    v
+a---b---c---d  branch 'master' (refers to commit 'd')
+    ^
+    |
+  tag 'v2.0' (refers to commit 'b')
+
+
+
+
+//===
+git branch --list
+git branch --list -v
+
+
+
+If --list is given, or if there are no non-option arguments, existing branches are listed; the current branch will be highlighted with an asterisk. Option -r causes the remote-tracking branches to be listed, and option -a shows both local and remote branches
+
+
+http://git-scm.com/docs/git-show-branch
+git show-branch [-a|--all] [-r|--remotes] [(<rev> | <glob>)...]

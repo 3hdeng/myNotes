@@ -1,0 +1,319 @@
+
+response: {
+    "bodySize": 54,
+    "contentType": "text/html",
+    "headers": [
+        {
+            "name": "Server",
+            "value": "nginx/1.4.6 (Ubuntu)"
+        },
+        {
+            "name": "Date",
+            "value": "Thu, 04 Dec 2014 09:49:23 GMT"
+        },
+        {
+            "name": "Content-Type",
+            "value": "text/html"
+        },
+        {
+            "name": "Transfer-Encoding",
+            "value": "chunked"
+        },
+        {
+            "name": "Connection",
+            "value": "close"
+        },
+        {
+            "name": "X-Powered-By",
+            "value": "PHP/5.5.9-1ubuntu4.4"
+        },
+        {
+            "name": "Location",
+            "value": "http://gen.xyz/availability-checker.php?src=download.com.com"
+        },
+        {
+            "name": "Set-Cookie",
+            "value": "SRVNAME=W1; path=/"
+        }
+    ],
+    "id": 35,
+    "redirectURL": "http://gen.xyz/availability-checker.php?src=download.com.com",
+    "stage": "start",
+    "status": 302,
+    "statusText": "Moved Temporarily",
+    "time": "2014-12-04T09:49:18.473Z",
+    "url": "http://download.com.com/i/dl/dl-bta.gif"
+}
+request: {
+    "headers": [
+        {
+            "name": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"
+        },
+        {
+            "name": "Referer",
+            "value": "http://www.iteksoft.com/"
+        },
+        {
+            "name": "Accept",
+            "value": "*/*"
+        }
+    ],
+    "id": 55,
+    "method": "GET",
+    "time": "2014-12-04T09:49:18.551Z",
+    "url": "http://gen.xyz/availability-checker.php?src=download.com.com"
+}
+response: {
+    "contentType": "text/html",
+    "headers": [
+        {
+            "name": "Server",
+            "value": "nginx/1.4.6 (Ubuntu)"
+        },
+        {
+            "name": "Date",
+            "value": "Thu, 04 Dec 2014 09:49:23 GMT"
+        },
+        {
+            "name": "Content-Type",
+            "value": "text/html"
+        },
+        {
+            "name": "Transfer-Encoding",
+            "value": "chunked"
+        },
+        {
+            "name": "Connection",
+            "value": "close"
+        },
+        {
+            "name": "X-Powered-By",
+            "value": "PHP/5.5.9-1ubuntu4.4"
+        },
+        {
+            "name": "Location",
+            "value": "http://gen.xyz/availability-checker.php?src=download.com.com"
+        },
+        {
+            "name": "Set-Cookie",
+            "value": "SRVNAME=W1; path=/"
+        }
+    ],
+    "id": 35,
+    "redirectURL": "http://gen.xyz/availability-checker.php?src=download.com.com",
+    "stage": "end",
+    "status": 302,
+    "statusText": "Moved Temporarily",
+    "time": "2014-12-04T09:49:18.598Z",
+    "url": "http://download.com.com/i/dl/dl-bta.gif"
+}
+response: {
+    "contentType": "text/html",
+    "headers": [
+        {
+            "name": "Location",
+            "value": "http://gen.xyz"
+        },
+        {
+            "name": "Vary",
+            "value": "Accept-Encoding"
+        },
+        {
+            "name": "Content-Encoding",
+            "value": "gzip"
+        },
+        {
+            "name": "Content-Type",
+            "value": "text/html"
+        },
+        {
+            "name": "Accept-Ranges",
+            "value": "bytes"
+        },
+        {
+            "name": "Date",
+            "value": "Thu, 04 Dec 2014 09:49:22 GMT"
+        },
+        {
+            "name": "X-Varnish",
+            "value": "1004873499 1004862038"
+        },
+        {
+            "name": "Age",
+            "value": "93"
+        },
+        {
+            "name": "Via",
+            "value": "1.1 varnish"
+        },
+        {
+            "name": "Connection",
+            "value": "keep-alive"
+        },
+        {
+            "name": "X-Varnish-Cache",
+            "value": "HIT"
+        },
+        {
+            "name": "Server",
+            "value": "C2M Server v1.01"
+        }
+    ],
+    "id": 55,
+    "redirectURL": "http://gen.xyz",
+    "stage": "end",
+    "status": 302,
+    "statusText": "Found",
+    "time": "2014-12-04T09:49:18.957Z",
+    "url": "http://gen.xyz/availability-checker.php?src=download.com.com"
+}
+request: {
+    "headers": [
+        {
+            "name": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"
+        },
+        {
+            "name": "Referer",
+            "value": "http://www.iteksoft.com/"
+        },
+        {
+            "name": "Accept",
+            "value": "*/*"
+        }
+    ],
+    "id": 62,
+    "method": "GET",
+    "time": "2014-12-04T09:49:19.145Z",
+    "url": "http://gen.xyz/"
+}
+response: {
+    "bodySize": 20116,
+    "contentType": "text/html; charset=UTF-8",
+    "headers": [
+        {
+            "name": "X-Pingback",
+            "value": "http://gen.xyz/xmlrpc.php"
+        },
+        {
+            "name": "Link",
+            "value": "<http://gen.xyz/>; rel=shortlink"
+        },
+        {
+            "name": "Vary",
+            "value": "Accept-Encoding"
+        },
+        {
+            "name": "Content-Encoding",
+            "value": "gzip"
+        },
+        {
+            "name": "Content-Type",
+            "value": "text/html; charset=UTF-8"
+        },
+        {
+            "name": "Accept-Ranges",
+            "value": "bytes"
+        },
+        {
+            "name": "Date",
+            "value": "Thu, 04 Dec 2014 09:49:23 GMT"
+        },
+        {
+            "name": "X-Varnish",
+            "value": "1004873539 1004866153"
+        },
+        {
+            "name": "Age",
+            "value": "60"
+        },
+        {
+            "name": "Via",
+            "value": "1.1 varnish"
+        },
+        {
+            "name": "Connection",
+            "value": "keep-alive"
+        },
+        {
+            "name": "X-Varnish-Cache",
+            "value": "HIT"
+        },
+        {
+            "name": "Server",
+            "value": "C2M Server v1.01"
+        }
+    ],
+    "id": 62,
+    "redirectURL": null,
+    "stage": "start",
+    "status": 200,
+    "statusText": "OK",
+    "time": "2014-12-04T09:49:19.364Z",
+    "url": "http://gen.xyz/"
+}
+response: {
+    "contentType": "text/html; charset=UTF-8",
+    "headers": [
+        {
+            "name": "X-Pingback",
+            "value": "http://gen.xyz/xmlrpc.php"
+        },
+        {
+            "name": "Link",
+            "value": "<http://gen.xyz/>; rel=shortlink"
+        },
+        {
+            "name": "Vary",
+            "value": "Accept-Encoding"
+        },
+        {
+            "name": "Content-Encoding",
+            "value": "gzip"
+        },
+        {
+            "name": "Content-Type",
+            "value": "text/html; charset=UTF-8"
+        },
+        {
+            "name": "Accept-Ranges",
+            "value": "bytes"
+        },
+        {
+            "name": "Date",
+            "value": "Thu, 04 Dec 2014 09:49:23 GMT"
+        },
+        {
+            "name": "X-Varnish",
+            "value": "1004873539 1004866153"
+        },
+        {
+            "name": "Age",
+            "value": "60"
+        },
+        {
+            "name": "Via",
+            "value": "1.1 varnish"
+        },
+        {
+            "name": "Connection",
+            "value": "keep-alive"
+        },
+        {
+            "name": "X-Varnish-Cache",
+            "value": "HIT"
+        },
+        {
+            "name": "Server",
+            "value": "C2M Server v1.01"
+        }
+    ],
+    "id": 62,
+    "redirectURL": null,
+    "stage": "end",
+    "status": 200,
+    "statusText": "OK",
+    "time": "2014-12-04T09:49:19.457Z",
+    "url": "http://gen.xyz/"
+}

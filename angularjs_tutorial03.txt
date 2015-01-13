@@ -1,0 +1,114 @@
+//=== https://docs.angularjs.org/tutorial/step_03
+ 
+Data-binding: This is one of the core features in Angular. 
+When the page loads, Angular binds 
+the name of the input box to 
+a variable of the same name in the data model and keeps the two in sync.
+
+[ex] input box named 'query'
+
+Search: <input ng-model="query">
+
+<ul class="phones">
+        <li ng-repeat="phone in phones | filter:query">
+          {{phone.name}}
+          <p>{{phone.snippet}}</p>
+        </li>
+      </ul>
+
+
+
+//=== unit test and end-to-end test
+Unit tests are perfect for testing controllers and other components of our application written in JavaScript, 
+but they can't easily test DOM manipulation or the wiring of our application. 
+
+For these, 
+an end-to-end test is a much better choice.
+
+
+
+
+//=== e2e : end to end test
+test/e2e/scenarios.js:
+
+describe('PhoneCat App', function() {
+
+  describe('Phone list view', function() {
+
+    beforeEach(function() {
+      browser.get('app/index.html');
+    });
+
+
+    it('should filter the phone list as a user types into the search box', function() {
+
+      var phoneList = element.all(by.repeater('phone in phones'));
+      var query = element(by.model('query'));
+
+      expect(phoneList.count()).toBe(3);
+
+      query.sendKeys('nexus');
+      expect(phoneList.count()).toBe(1);
+
+      query.clear();
+      query.sendKeys('motorola');
+      expect(phoneList.count()).toBe(2);
+    });
+  });
+});
+
+
+
+
+//===
+You might think you could just add the {{query}} to the title tag element as follows:
+
+<title>Google Phone Gallery: {{query}}</title>
+However, when you reload the page, you won't see the expected result. 
+This is because the "query" model lives in the scope, 
+defined by the ng-controller="PhoneListCtrl" directive, 
+on the body element:  <body ng-controller="PhoneListCtrl">
+
+
+If you want to bind to the query model to the <title> element, 
+you must "move" the ngController declaration to the HTML element 
+
+<html ng-app="phonecatApp" ng-controller="PhoneListCtrl">
+
+because it is the common parent of both the body and title elements:
+
+//=== modify app/index.html
+<html ng-app="phonecatApp" ng-controller="PhoneListCtrl">
+<title>Google Phone Gallery: {{query}}</title>
+
+
+-->
+<title ng-bind-template="Google Phone Gallery: {{query}}">Google Phone Gallery</title>
+
+
+//=== modify test/e2e/scenarios.js 
+...
+ beforeEach(function() {
+      browser.get('app/index.html');
+    });
+
+    var phoneList = element.all(by.repeater('phone in phones'));
+    var query = element(by.model('query'));
+
+    it('should filter the phone list as a user types into the search box', function() {
+
+ ...
+
+it('should display the current filter value in the title bar', function() {
+      query.clear();
+      expect(browser.getTitle()).toMatch(/Google Phone Gallery:\s*$/);
+
+      query.sendKeys('nexus');
+      expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);
+    }); 
+
+
+//===
+npm start
+npm run protractor
+

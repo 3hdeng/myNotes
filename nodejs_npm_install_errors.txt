@@ -1,0 +1,55 @@
+$ npm install
+Error: ENOENT, stat 'C:\Users\eltonden\AppData\Roaming\npm'
+
+--> 
+Manually creating a folder named 'npm' in the displayed path
+http://stackoverflow.com/questions/26596942/error-enoent-stat-c-users-ali-appdata-roaming-npm
+
+
+//=== c:\workspaces\angular\angular-phonecat
+$ npm install
+npm WARN optional dep failed, continuing fsevents@0.3.1
+/
+> ws@0.4.32 install c:\workspaces\angular\angular-phonecat\node_modules\karma\n
+de_modules\socket.io\node_modules\socket.io-client\node_modules\ws
+> (node-gyp rebuild 2> builderror.log) || (exit 0)
+
+
+c:\workspaces\angular\angular-phonecat\node_modules\karma\node_modules\socket.i
+\node_modules\socket.io-client\node_modules\ws>node "c:\Program Files\nodejs\no
+e_modules\npm\bin\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" re
+uild
+Building the projects in this solution one at a time. To enable parallel build,
+please add the "/m" switch.
+MSBUILD : error MSB3428: Could not load the Visual C++ component "VCBuild.exe".
+ To fix this, 1) install the .NET Framework 2.0 SDK, 2) install Microsoft Visua
+l Studio 2005 or 3) add the location of the component to the system path if it
+is installed elsewhere.  [c:\workspaces\angular\angular-phonecat\node_modules\k
+arma\node_modules\socket.io\node_modules\socket.io-client\node_modules\ws\build
+\binding.sln]
+MSBUILD : error MSB3428: Could not load the Visual C++ component "VCBuild.exe".
+ To fix this, 1) install the .NET Framework 2.0 SDK, 2) install Microsoft Visua
+l Studio 2005 or 3) add the location of the component to the system path if it
+is installed elsewhere.  [c:\workspaces\angular\angular-phonecat\node_modules\k
+arma\node_modules\socket.io\node_modules\socket.io-client\node_modules\ws\build
+\binding.sln]
+
+> angular-phonecat@0.0.0 postinstall c:\workspaces\angular\angular-phonecat
+> bower install
+
+bower not-cached    git://github.com/angular/bower-angular-mocks.git#1.3.x
+bower resolve       git://github.com/angular/bower-angular-mocks.git#1.3.x
+bower not-cached    git://github.com/jquery/jquery.git#~2.1.1
+bower resolve       git://github.com/jquery/jquery.git#~2.1.1
+
+
+//===  eltonden@WIN7X64 /c/workspaces/angular/angular-phonecat/node_modules (master)
+$ npm start
+npm ERR! Error: ENOENT, open 'c:\workspaces\angular\angular-phonecat\node_module
+s\package.json'
+
+
+$ cd ..
+$ npm start
+
+
