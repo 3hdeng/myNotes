@@ -1,0 +1,3 @@
+terminal: shift+alt+ T
+code beautify: ctl+shift+ B
+close active panel: ctl+ alt+ C
