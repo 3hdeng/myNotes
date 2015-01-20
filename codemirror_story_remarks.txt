@@ -1,0 +1,48 @@
+//=== http://en.wikipedia.org/wiki/CodeMirror
+""" ...
+The code was first packaged up and released under the name CodeMirror in May 2007. 
+This version was based on the contentEditable feature of browsers
+
+In late 2010, the Ace project, another JavaScript-based code editor, pioneered new implementation techniques and 
+demonstrated that it is possible, even in JavaScript, 
+to handle documents with many thousands of lines without degraded performance
+
+This prompted a rewrite of CodeMirror [3] along the same principles. The result was version 2, which no longer relied on contentEditable and significantly improved performance
+... """
+
+
+//===
+Date: May 24th 2007
+http://codemirror.net/1/story.html
+
+""" ... 
+Closing thoughts
+Well, I despaired at times, but I did end up with a working JavaScript editor. 
+I did not keep track of the amount of time I wasted on this, 
+but I would estimate it to be around fifty hours. 
+Finding workarounds for browser bugs can be a terribly nonlinear process. 
+
+I just spent half a day working on a weird glitch in Firefox that caused 
+the cursor in the editable frame to be displayed 3/4 line too high 
+when it was at the very end of the document. 
+
+Then I found out that setting the style.display of the iframe to "block" fixed this (why not?). 
+I'm amazed how often issues that seem hopeless do turn out to be avoidable, 
+even if it takes hours of screwing around and some truly non-obvious ideas.
+...
+JavaScript + DOM elements are a surprisingly powerful platform. 
+Simple interactive documents and forms can be written in browsers with very little effort, 
+generally less than with most 'traditional' platforms (Java, Win32, things like WxWidgets). 
+
+Libraries like Dojo (and a similar monster I once wrote myself) even make complex, 
+composite widgets workable. 
+...  nonstandard and buggy, and are often poorly designed. 
+Because of this, writing such applications, when it is even possible, is painful process.
+...
+personally, I would prefer for those browser companies to put some real effort into things 
+like cleaning up and standardising shady things like designMode, 
+fixing their bugs, and getting serious about ECMAScript 4.
+
+
+
+..."""

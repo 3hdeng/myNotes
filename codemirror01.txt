@@ -1,0 +1,123 @@
+* a code editor implemented in JavaScript on top of the browser's DOM.
+* technical background for codemirror at http://marijnhaverbeke.nl/blog
+
+//=== http://codemirror.net/1/story.html
+
+""" To find out which line to indent, and to make sure that adding or removing whitespace 
+doesn't cause the cursor to jump in strange ways, it is necessary to determine which text 
+the user has selected. Even though I was working with just a simple textarea at this point, 
+this was already a bit of a headache.
+
+...
+After some experimentation I managed to work out an elaborate method for getting something 
+similar to the selectionStart and selectionEnd values in other browsers. It worked like this:
+
+...
+Get the TextRange object corresponding to the selection.
+Record the length of the text inside it.
+Make another TextRange that covers the whole textarea element.
+Set the start of the first TextRange to the start of the second one.
+Again get the length of the text in the first object.
+Now selectionEnd is the second length, and selectionStart is the second minus the first one.
+
+...
+another interesting feature of these TextRanges: You can move their endpoints by a given number of characters, which is useful when trying to set a cursor at the Nth character of a textarea, 
+but in this context, newlines are not considered to be characters, 
+so you'll always end up one character too far for every newline you passed. 
+
+Of course, you can count newlines and compensate for this 
+(though it is still not possible to position the cursor right in front of a newline).
+
+... -->
+The solution was obvious: Since the text inside a textarea can only be manipulated as 
+one single big string, I had to spread it out over multiple nodes. 
+How do you spread editable content over multiple nodes? Right! designMode or contentEditable.
+
+Now I wasn't entirely naive about designMode, I had been looking into writing a non-messy WYSIWYG editor 
+before, and at that time I had concluded two things:
+
+* It is impossible to prevent the user from inserting whichever HTML junk he wants into the document.
+
+* In Internet Explorer, it is extemely hard to get a good view on what nodes the user has selected.
+
+...
+ the good folks at Microsoft designed a 'really bad interface' for putting editable documents in pages, 
+ and the other browsers, not wanting to be left behind, more or less copied that
+...
+ Anyway, seeing how using an editable document would also make syntax highlighting possible, 
+ I foolishly went ahead. There is something perversely fascinating about trying to 
+ build a complicated system on a lousy, unsuitable platform.
+... 
+
+...
+A very simple scanning can tell the difference between strings, comments, keywords, and other code. 
+But this time I wanted to actually be able to recognize regular expressions, 
+so that I didn't have any blatant incorrect behaviour anymore.
+...
+
+...
+doing a serious parse on the code. This would not only make detecting regular expressions much easier, 
+it would also give me detailed information about the code, which can be used to determine proper indentation levels, 
+and to make subtle distinctions in colouring, 
+for example the difference between variable names and property names.
+...
+
+...
+ it is ridiculously easy to accidentally create global instead of local variables. 
+ I don't consider myself a JavaScript rookie anymore, 
+ but it was (embarrasingly enough) only this week that I realized that my habit of typing 
+ for (name in object) ... 
+ was creating a global variable name, 
+ 
+ and that I should be typing for (var name in object) ... instead.
+ 
+... 
+...
+Re-parsing all the code the user has typed in every time he hits a key is obviously not feasible. 
+So how does one combine on-the-fly highlighting with a serious parser? 
+One option would be to split the code into top-level statements (functions, variable definitions, etc.) 
+and parse these separately. This is horribly clunky though
+
+especially considering the fact that modern JavaScripters often put all the code 
+in a file in a single big object or function 
+to prevent namespace pollution.
+
+I have always liked continuation-passing style and generators. 
+So the idea I came up with is this: An interruptable, resumable parser. 
+This is a parser that does not run through a whole document at once, 
+but parses on-demand, a little bit at a time. 
+
+...
+ You start parsing at the top of the code ... throughout the document ...
+ at every end of line, you store a copy of the current parser state. 
+ Later on, when line 106 changes, you grab the interrupted parser that was stored at the end of line 105, 
+ and use it to re-parse line 106. 
+ 
+ It still knows exactly what the context was at that point, which local variables were defined, 
+ which unfinished statements were encountered, and so on.
+
+But that, unfortunately, turned out to be not quite as easy as it sounds.
+
+...
+working inside an editable frame we don't just have to deal with text. 
+The code will be represented by some kind of DOM tree. 
+My first idea was to set the 'white-space: pre' style for the frame and 
+try to work with mostly text, with the occasional coloured span element.
+...
+ white-space: pre in browsers, especially in editable frames,
+... was unworkable.
+
+...
+tried a series of div elements, one per line, with span elements inside them. 
+This seemed to nicely reflect the structure of the code in a shallowly hierarchical way. 
+I soon realized, however, that my code would be much more straightfoward when using 
+no hierarchy whatsoever ― a series of spans, with br tags at the end of every line. 
+This way, the DOM nodes form a flat sequence that corresponds to the sequence of the text 
+― just extract text from span nodes and substitute newlines for br nodes.
+
+...
+
+
+"""
+
+

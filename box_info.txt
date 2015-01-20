@@ -1,0 +1,10 @@
+//=== dynamic
+http(s)://perfume-boris-<port>.codio.io
+
+
+
+//=== Static Content
+http://perfume-boris.codio.io
+https://perfume-boris.codio.io
+
+

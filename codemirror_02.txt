@@ -1,0 +1,50 @@
+//=== http://codemirror.net/1/story.html
+
+""" ....
+The highlighting process consists of the following elements: 
+normalizing the DOM tree, 
+extracting the text from the DOM tree, 
+tokenizing this text, 
+parsing the tokens, and 
+finally adjusting the DOM nodes to reflect the structure of the code.
+... """
+
+
+//=== codio support md(markdown) yet ?
+""" ...
+function traverseDOM(start){
+  var cc = function(){return scanNode(start, stop);};
+  function stop(){
+    cc = stop;
+    throw StopIteration;
+  }
+  function yield(value, c){
+    cc = c;
+    return value;
+  }
+ 
+  function scanNode(node, c){
+    if (node.nextSibling)
+      var nextc = function(){return scanNode(node.nextSibling, c);};
+    else 
+      var nextc = c;
+ 
+    if (/* node is proper span element */)
+      return yield(node.firstChild.nodeValue, nextc);
+    else if (/* node is proper br element */)
+      return yield("\n", nextc);
+    else 
+      /* flatten node, yield its textual content */;
+  }
+ 
+  return {next: function(){return cc();}};
+}
+
+The variable c stands for 'continuation', and 
+cc for 'current continuation' ― 
+that last variable is used to store the function to continue with, when yielding a value to the outside world. 
+
+Every time control leaves this function, it has to make sure that cc is set to a suitable value, 
+which is what yield and stop take care of.
+
+... """

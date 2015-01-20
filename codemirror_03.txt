@@ -1,0 +1,32 @@
+//=== http://en.wikipedia.org/wiki/CodeMirror
+""" ...
+The code was first packaged up and released under the name CodeMirror in May 2007. 
+This version was based on the contentEditable feature of browsers
+
+In late 2010, the Ace project, another JavaScript-based code editor, pioneered new implementation techniques and 
+demonstrated that it is possible, even in JavaScript, 
+to handle documents with many thousands of lines without degraded performance
+
+This prompted a rewrite of CodeMirror [3] along the same principles. The result was version 2, which no longer relied on contentEditable and significantly improved performance
+... """
+
+
+""" ...
+Features
+Syntax highlighting.
+Auto indentation and outdent.
+Handles huge documents (hundreds of thousands of lines) without trouble.
+Customizable key bindings including Vi and Emacs modes.
+A wide range of language modes. 
+Add-ons for autocompletion, code folding, integrated linting.
+A broad programming API.
+
+... """
+
+
+//===
+http://en.wikipedia.org/wiki/Comparison_of_JavaScript-based_source_code_editors
+
+
+Ace, CodeMirror, CodePress, ...
+
