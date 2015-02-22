@@ -1,0 +1,52 @@
+--> http://stackoverflow.com/questions/2816369/git-push-error-remote-rejected-master-master-branch-is-currently-checked
+convert your remote repository to bare repository (there is no working copy in the bare repository - the folder contains only the actual repository data).
+
+Execute the following command in your remote repository folder:
+
+$ git config --bool core.bare true
+Then delete all the files except .git in that folder. And then you will be able to perform git push to the remote repository without any errors.
+
+The reason for this restriction is that the push operation operates only on the remote Git repository, it doesn't have access to the index and working tree. So, if allowed, a push on the checked-out branch would change the HEAD to be inconsistent with the index and working tree on the remote repository.
+
+This would make it very easy to accidentally commit a change that undoes all of the pushed changes and also makes it very difficult to distinguish between any local changes that have not been committed and differences between the new HEAD, the index and the working tree that have been caused by push moving HEAD.
+
+
+
+
+//===
+after 
+$ git config --bool core.bare true
+
+$ git add .
+fatal: This operation must be run in a work tree
+
+
+-->
+$ git config --bool core.bare false
+
+-->
+Just clone the same project in another folder and copy the .git/ folder to your project.
+
+Example
+
+Create temp folder:
+
+mkdir temp
+switch to temp folder
+
+cd temp/
+clone the same project in the temp folder:
+
+git clone [-b branchName] git@path_to_your_git_repository
+copy .git folder to your projet:
+
+cp -R .git/  path/to/your/project/
+
+switch to your project and run git status
+
+delete the temp folder if your are finished.
+
+
+
+
+

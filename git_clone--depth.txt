@@ -1,0 +1,49 @@
+//=== http://stackoverflow.com/questions/6941889/is-git-clone-depth-1-shallow-clone-more-useful-than-it-makes-out
+
+The --depth 1 option in git clone:
+
+Create a shallow clone with a history truncated to the specified number of revisions. A shallow repository has a number of limitations (you cannot clone or fetch from it, nor push from nor into it), but is adequate if you are only interested in the recent history of a large project with a long history, and would want to send in fixes as patches.
+But I've successfully done a shallow clone, committed some changes and pushed those changes back to the (bare clone) origin.
+
+It makes sense to me - I mean why not? when the cloned HEAD is identifiable in the origin, and my commit comes on top of this, there seems no reason. But the manual says otherwise.
+
+
+[Q]  is it safe to shallow clone, develop commits in it, pull again to keep up with updates from origin?
+
+
+
+	
+Note that Git 1.9/2.0 (Q1 2014) has removed that limitation.
+See commit 82fba2b, from Nguy?n Thái Ng?c Duy (pclouds):
+
+Now that git supports data transfer from or to a shallow clone, these limitations are not true anymore.
+The documentation now reads:
+
+--depth <depth>::
+Create a 'shallow' clone with a history truncated to the specified number of revisions.
+That stems from commits like 0d7d285, f2c681c, and c29a7b8 which support clone, send-pack /receive-pack with/from shallow clones.
+smart-http now supports shallow fetch/clone too.
+
+All the details are in "shallow.c: the 8 steps to select new commits for .git/shallow".
+
+
+
+
+
+//=== git clone to another folder
+[Q] How do you clone a git repository into a specific folder?
+
+
+* Option A:
+git clone git@github.com:whatever folder-name
+
+* Option B:
+move the .git folder, too.
+
+* Better yet:
+Keep your working copy somewhere else, and create a symbolic link.
+
+* git clone git@github.com:whatever .
+The "." at the end specifies the current folder as the checkout folder.
+
+

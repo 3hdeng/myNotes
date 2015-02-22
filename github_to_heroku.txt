@@ -1,0 +1,36 @@
+heroku apps -> deploy -> github -> manual deploy
+sh: 1: bower: not found
+       
+       npm ERR! angular-phonecat@0.0.0 postinstall: `bower install`
+       npm ERR! Exit status 127
+
+//===
+-----> Checking startup method
+       No Procfile; Adding 'web: npm start' to new Procfile
+
+
+
+-->
+$ heroku logs --tail --app heroku-phonecat
+
+//===
+http://stackoverflow.com/questions/24534920/deploying-to-heroku-with-grunt-bower-node-modules
+
+
+"main": "server.js",
+  "engines": {
+    "node": "0.10.29"
+  },
+  "dependencies": {
+
+
+-->
+"scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
+},
+"dependencies": {
+    "bower": "^1.3.5",
+
+
+//===
+https://devcenter.heroku.com/articles/getting-started-with-nodejs#provision-a-database

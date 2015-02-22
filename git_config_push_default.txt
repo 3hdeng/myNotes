@@ -1,0 +1,28 @@
+git config --local core.filemode
+git config -l
+git config push.default simple
+git config push.default current
+
+
+//===
+git config -l
+push.default=simple
+
+The difference is that with simple, git push (without passing a refspec) will fail if the current branch isn't tracking a remote upstream branch (even if a branch with the same name exists on the remote):
+
+$ git checkout -b foo
+Switched to a new branch 'foo'
+
+$ git config push.default simple
+$ git push
+fatal: The current branch foo has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin foo
+On the other hand, current doesn't care about whether or not the current branch tracks an upstream, it just wants to push to any branch that has the same name:
+
+$ git config push.default current
+$ git push
+Total 0 (delta 0), reused 0 (delta 0)
+To /Documents/GitHub/bare
+ * [new branch]      foo-> foo
