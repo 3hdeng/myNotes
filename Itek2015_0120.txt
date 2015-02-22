@@ -1,0 +1,4 @@
+* nodejs-yo example app with dropdown/listbox/database, ...
+* deployment from codio to Heroku/EC2/GitHub
+* git + codio
+* gitbook
