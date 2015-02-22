@@ -7,6 +7,9 @@ https://www.chef.io/
 http://docs.saltstack.com/en/latest/index.html
 
 
+url("/artwork/weave02/weave02-large-c1ebefe2.jpg")
+
+
 //=== clouding
 vm --> container 
 ec2 --> stack

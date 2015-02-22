@@ -1,6 +1,7 @@
 *.obj
 *.pyc
 --untitled*
+__untit*
 desktop.ini
 Python Scripts
 IPython Notebooks
