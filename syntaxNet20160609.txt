@@ -5,6 +5,10 @@ bazel test ...
 ERROR: /root/.cache/bazel/_bazel_root/f391a79fd925d426b24c128c93d462ba/external/tf/tensorflow/core/kernels/BUILD:297:1: C++ compilation of rule '@tf//tensorflow/core/kernels:pad_op' failed: gcc failed: error executing command /usr/bin/gcc -U_FORTIFY_SOURCE '-D_FORTIFY_SOURCE=1' -fstack-protector -Wall -Wl,-z,-relro,-z,now -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -g0 -O2 -DNDEBUG ... (remaining 81 argument(s) skipped): com.google.devtools.build.lib.shell.BadExitStatusException: Process exited with status 1.
 virtual memory exhausted: Cannot allocate memory
 
+ERR: grpc
+ERR: syntaxnet/tensorflow
+ERR: Cannot redefine repository after any load statement in the WORKSPACE file
+
 
 
 http://stackoverflow.com/questions/26220957/how-can-i-inspect-the-file-system-of-a-failed-docker-build
