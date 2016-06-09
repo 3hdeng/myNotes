@@ -1,0 +1,98 @@
+//=== http://codemirror.net/doc/manual.html#api_doc
+Each editor is associated with an instance of CodeMirror.Doc, its document. A document represents the editor content, plus a selection, an undo history, and a mode. A document can only be associated with a single editor at a time.
+
+codeMirror instance is an editor
+
+
+Methods prefixed with doc. can, unless otherwise specified, be called both on CodeMirror (editor) instances and CodeMirror.Doc instances. Methods prefixed with cm. are only available on CodeMirror instances.
+
+
+//=== http://codemirror.net/doc/manual.html#events
+ To fire your own events, use CodeMirror.signal(target, name, args...), where target is a non-DOM-node object.
+
+
+"mousedown", "dblclick", "contextmenu", "keydown", "keypress", "keyup", "dragstart", "dragenter", "dragover", "drop" (instance: CodeMirror, event: Event)
+Fired when CodeMirror is handling a DOM event of this type. You can preventDefault the event, or give it a truthy codemirrorIgnore property, to signal that CodeMirror should do no further handling.
+
+
+
+
+
+//=== http://codemirror.net/doc/manual.html
+CodeMirror is a versatile text editor implemented in JavaScript for the browser
+
+Basic Usage
+CodeMirror(place: Element|fn(Element), ?option: object) constructor.
+CodeMirror.fromTextArea(textArea: TextAreaElement, ?config: object)
+
+
+The easiest way to use CodeMirror is to simply load the script and style sheet found under lib/ in the distribution, plus a mode script from one of the mode/ directories. (See the compression helper for an easy way to combine scripts.)  
+
+<script src="lib/codemirror.js"></script>
+<link rel="stylesheet" href="../lib/codemirror.css">
+<script src="mode/javascript/javascript.js"></script>
+
+
+ an editor instance can be created like this:
+var myCodeMirror = CodeMirror(document.body);
+--> an empty editor is appended to the document body
+
+
+ To have more control over the new editor, a configuration object can be passed to CodeMirror as a second argument:
+
+var myCodeMirror = CodeMirror(document.body, {
+  value: "function myScript(){return 100;}\n",
+  mode:  "javascript"
+});
+
+-->
+This will initialize the editor with a piece of code already in it, and explicitly tell it to use the JavaScript mode
+
+
+
+***
+the first argument to the CodeMirror() can be a function that, 
+when given a DOM element elt as the argument, 
+... 
+This could be used to, for example, replace a textarea with a real editor:
+
+var myCodeMirror = CodeMirror(function(elt) {
+  myTextArea.parentNode.replaceChild(elt, myTextArea);
+}, {value: myTextArea.value});
+
+
+-->
+ a much more powerful shortcut:
+
+var myCodeMirror = CodeMirror.fromTextArea(myTextArea);
+
+
+
+//=== div class codeMirror-code
+deep down to 7 levels more ?
+<div > ... <div> ....
+
+
+
+
+
+//===
+Find the ".CodeMirror-scroll" CSS rule near the top of the file and change background-color to whatever you'd like.
+
+
+how to change codemirror background color
+
+codemirror.css
+
+class CodeMirror
+The outer element of the editor. This should be used for the editor width, height, borders and positioning. Can also be used to set styles that should hold for everything inside the editor (such as font and font size), or to set a background. Setting this class' height style to auto will make the editor resize to fit its content (it is recommended to also set the viewportMargin option to Infinity when doing this.
+
+
+
+//===
+The CodeMirror distributions comes with Emacs, Vim, and Sublime Text-style keymaps.
+
+Keys are identified either by name or by character. The CodeMirror.keyNames object defines names for common keys and associates them with their key codes. Examples of names defined here are Enter, F5, and Q
+
+
+When a map contains multi-stoke bindings or keys with modifiers that are not specified in the default order (Shift-Cmd-Ctrl-Alt), you must call CodeMirror.normalizeKeyMap on it before it can be used. This function takes a keymap and modifies it to normalize modifier order and properly recognize multi-stroke bindings. It will return the keymap itself.

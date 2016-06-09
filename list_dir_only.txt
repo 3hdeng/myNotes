@@ -1,0 +1,26 @@
+Four ways to get this done, each with a different output format
+
+1. Using echo
+
+Example: echo */, echo */*/
+Here are what I got:
+
+cs/ draft/ files/ hacks/ masters/ static/  
+cs/code/ files/images/ static/images/ static/stylesheets/  
+2. Using ls only
+
+Example: ls -d */
+Here are exactly what I got:
+
+cs/     files/      masters/  
+draft/  hacks/      static/  
+3. Using ls and grep
+
+Example: ls -l | grep "^d" Here are what I got:
+
+drwxr-xr-x  24 h  staff     816 Jun  8 10:55 cs  
+drwxr-xr-x   6 h  staff     204 Jun  8 10:55 draft  
+drwxr-xr-x   9 h  staff     306 Jun  8 10:55 files  
+drwxr-xr-x   2 h  staff      68 Jun  9 13:19 hacks  
+drwxr-xr-x   6 h  staff     204 Jun  8 10:55 masters  
+drwxr-xr-x   4 h  staff     136 Jun  8 10:55 static  

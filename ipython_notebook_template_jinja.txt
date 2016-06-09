@@ -1,0 +1,185 @@
+//=== python jinja2 template
+http://jinja.pocoo.org/docs/dev/api/#basics
+
+
+The simplest way to configure Jinja2 to load templates for your application looks roughly like this:
+
+from jinja2 import Environment, PackageLoader
+env = Environment(loader=PackageLoader('yourapplication', 'templates'))
+This will create a template environment with the default settings and a loader that looks up the templates in the templates folder inside the yourapplication python package. Different loaders are available and you can also write your own if you want to load templates from a database or other resources.
+
+To load a template from this environment you just have to call the get_template() method which then returns the loaded Template:
+
+template = env.get_template('mytemplate.html')
+
+
+//=== str or unicode
+ as some libraries are typechecking against str explicitly. 
+For example datetime.strftime does not accept Unicode arguments. 
+To not break it completely 
+Jinja2 is returning str for strings that fit into ASCII and 
+for everything else unicode:
+
+
+
+//=== http://stackoverflow.com/questions/19401106/dashes-in-jinja-templates
+Dashes in jinja templates
+
+Turns out that + and - are there for whitespace control purpose.
+
+You can manually disable the lstrip_blocks behavior by putting a plus sign (+) at the start of a block
+[...]
+You can also strip whitespace in templates by hand. If you put an minus sign (-) to the start or end of an block (for example a for tag), a comment or variable expression you can remove the whitespaces after or before that block
+
+--> http://jinja.pocoo.org/docs/templates/#whitespace-control
+
+
+<div>
+    {% if True %}
+        yay
+    {% endif %}
+</div>
+gets rendered with blank lines inside the div:
+
+<div>
+
+        yay
+
+</div>
+
+
+-->
+But with both trim_blocks and lstrip_blocks enabled, the lines with the template blocks are removed while preserving the whitespace of the contents:
+
+<div>
+        yay
+</div> 
+
+
+
+{% for item in seq -%}
+    {{ item }}
+{%- endfor %}
+This will yield all elements without whitespace between them. If seq was a list of numbers from 1 to 9 the output would be 123456789.
+
+If Line Statements are enabled they strip leading whitespace automatically up to the beginning of the line.
+
+Jinja2 by default also removes trailing newlines. To keep the single trailing newline when it is present, configure Jinja to keep_trailing_newline.
+
+
+http://jinja.pocoo.org/docs/dev/templates/#whitespace-control
+
+
+
+//=== pound/hash symbol in jinja template
+'{#' +  jinja template  pound symbol+  on # pound/hash symbol  
+
+#, number sign, pound, hash, 
+
+
+-->  http://jinja.pocoo.org/docs/dev/templates/
+Comments
+To comment-out part of a line in a template, use the comment syntax which is 
+by default set to {# ... #}. 
+
+This is useful to comment out parts of the template for debugging or to add information for other template designers or yourself:
+
+{# note: disabled template because we no longer use this
+    {% for user in users %}
+        ...
+    {% endfor %}
+#}
+
+
+
+
+//===
+http://stackoverflow.com/questions/19850829/new-ipython-notebook-templating
+
+New ipython notebook templating
+
+
+http://stackoverflow.com/a/18199211
+
+http://zulko.wordpress.com/2013/04/14/customize-your-ipython-notebook-with-css/
+http://www.reddit.com/r/Python/comments/1cbn2p/ipython_notebook_10_allows_custom_styling_with/
+
+To get permanent customised CSS within the notebooks, I needed to 
+create <myprofile>/static/custom/custom.css 
+in my .ipython user folder folder.
+
+
+http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/02-css-selector.ipynb
+
+
+
+//===
+{% block in_prompt -%}
+<div class="prompt input_prompt">
+{%- if cell.execution_count is defined -%}
+In&nbsp;[{{ cell.execution_count|replace(None, "&nbsp;") }}]:
+{%- else -%}
+In&nbsp;[&nbsp;]:
+{%- endif -%}
+</div>
+{%- endblock in_prompt %}
+
+
+https://github.com/ipython/ipython/blob/master/IPython/nbconvert/templates/html/basic.tpl
+
+
+
+{# 
+  output_prompt doesn't do anything in HTML,
+  because there is a prompt div in each output area (see output block)
+#}
+
+
+{% block output_prompt %}
+{% endblock output_prompt %}
+{% block input %}
+<div class="inner_cell">
+    <div class="input_area">
+
+
+
+//=== https://github.com/ipython/ipython/blob/master/IPython/nbconvert/writers/base.py
+
+List
+from IPython.utils.traitlets import List
+
+NbConvertBase
+from ..utils.base import NbConvertBase
+
+--> https://github.com/ipython/ipython/blob/master/IPython/nbconvert/utils/base.py
+class NbConvertBase(LoggingConfigurable):
+    """Global configurable class for shared config
+...
+	def __init__(self, **kw):
+        super(NbConvertBase, self).__init__(**kw)
+
+
+
+https://github.com/ipython/ipython/blob/master/IPython/nbconvert/writers/__init__.py
+
+from .files import FilesWriter
+from .stdout import StdoutWriter
+from .base import WriterBase
+
+
+
+
+
+
+//=== https://github.com/ipython/ipython/blob/master/IPython/nbconvert/utils/lexers.py
+# Third party
+from pygments.lexers import BashLexer, PythonLexer, Python3Lexer
+from pygments.lexer import (
+    Lexer, DelegatingLexer, RegexLexer, do_insertions, bygroups, using,
+)
+from pygments.token import (
+    Comment, Generic, Keyword, Literal, Name, Operator, Other, Text, Error,
+)
+from pygments.util import get_bool_opt
+
+

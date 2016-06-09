@@ -1,0 +1,1 @@
+cannot run msysgit installer on azure cloudapp.net

@@ -1,0 +1,140 @@
+IPython is an enhanced interactive Python interpreter, offering tab completion, object introspection, and much more
+
+iPython is a command shell for interactive computing in multiple programming languages, originally developed for the Python programming language, that offers enhanced introspection, rich media, additional shell syntax, tab completion, and rich history. IPython currently provides the following features:
+
+Powerful interactive shells (terminal and Qt-based).
+A browser-based notebook with support for code, text, mathematical expressions, inline plots and other rich media.
+Support for interactive data visualization and use of GUI toolkits.
+Flexible, embeddable interpreters to load into one's own projects.
+Easy to use, high performance tools for parallel computing.
+
+
+//=== notebook examples
+https://github.com/unpingco/Python-for-Signal-Processing
+
+http://nbviewer.ipython.org/
+*** This web site does not host notebooks, it only renders notebooks available on other websites
+
+
+
+
+//=== web mining example
+http://nbviewer.ipython.org/github/ptwobrussell/Mining-the-Social-Web-2nd-Edition/blob/master/ipynb/Chapter%200%20-%20Preface.ipynb
+The virtual machine experience is powered by Vagrant, an amazing abstraction that works on top of virtualization providers
+
+
+
+//===
+[Q] when to use ipython Qt console?
+
+
+//=== pig in the python
+http://nbviewer.ipython.org/github/unpingco/Pig-in-the-Python/tree/master/
+
+
+//=== coursera dnload
+https://github.com/unpingco/coursera-dl/blob/master/README.md
+
+This script right now downloads lectures from coursera. This will work both for published lectures as well as lectures in preview mode. I will add ability to download materials if need be.
+
+ruby coursera-dl.rb <username> <password> <course-name>
+If the course is in preview add true as the last parameter:
+
+ruby coursera-dl.rb <username> <password> <course-name> true
+
+
+
+
+
+//===
+compare anaconda and vagrant ?
+
+host ipython on internet?
+http://nbviewer.ipython.org/github/minrk/ipython/blob/master/examples/Notebook/Running%20the%20Notebook%20Server.ipynb
+The IPython notebook server is a custom web server that runs the notebook web application. Most of the time, users run the notebook server on their local computer using IPython's command line interface.
+
+
+You can also specify the port manually:
+
+ipython notebook --port 9999
+Or start notebook server without opening a web browser.
+
+ipython notebook --no-browser
+
+
+//===
+Securing the notebook server
+The IPython Notebook allows arbitrary code execution on the computer running it. Thus, the notebook web server should never be run on the open internet without first securing it. By default, the notebook server only listens on local network interface (127.0.0.1) There are two steps required to secure the notebook server:
+
+* Setting a password
+* Encrypt network traffic using SSL
+
+In [1]:
+from IPython.lib import passwd
+password = passwd("secret")
+password
+Out[1]:
+'sha1:6c2164fc2b22:ed55ecf07fc0f985ab46561483c0e888e8964ae6'
+
+You can then add this to your 
+ipython_notebook_config.py:
+
+# Password to use for web authentication
+c = get_config()
+c.NotebookApp.password = 
+u'sha1:6c2164fc2b22:ed55ecf07fc0f985ab46561483c0e888e8964ae6'
+
+
+
+//=== ssl/https
+adding the following to ipython_notebook_config.py:
+
+# The full path to an SSL/TLS certificate file.
+c.NotebookApp.certfile = u'/Users/bgranger/.ipython/profile_my_profile/mycert.crt'
+
+# The full path to a private key file for usage with SSL/TLS.
+c.NotebookApp.keyfile = u'/Users/bgranger/.ipython/profile_my_profile/mycert.key'
+
+
+
+//=== make notebook server public
+by listening to arbitrary ip address ?
+
+> ipython notebook --ip=* --no-browser
+You can also add the following to youripython_notebook_config.py file:
+
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+
+
+http://nbviewer.ipython.org/github/minrk/ipython/blob/master/examples/Notebook/Running%20the%20Notebook%20Server.ipynb
+
+
+//=== http://blog.fperez.org/2012/09/blogging-with-ipython-notebook.html
+use ipython notebook to write/publish blogs
+
+Update: made full github repo for blog-as-notebooks, and updated instructions on how to more easily configure everything and use the newest nbconvert for a more streamlined workflow
+
+xxx nbconvert -f blogger-html your_notebook.ipynb
+
+http://ipython.org/ipython-doc/1/interactive/nbconvert.html
+The command-line syntax to run the nbconvert script is:
+
+$ ipython nbconvert --to FORMAT notebook.ipynb
+This will convert the IPython document file notebook.ipynb into the output format given by the FORMAT string.
+
+The default output format is html, for which the --to argument may be omitted:
+
+$ ipython nbconvert notebook.ipynb
+$ ipython nbconvert --to markdown notebook.ipynb --stdout
+
+
+a configuration file, say mycfg.py, containing the text:
+
+c = get_config()
+c.NbConvertApp.notebooks = ["notebook1.ipynb", "notebook2.ipynb"]
+and using the command:
+
+$ ipython nbconvert --config mycfg.py
+ Python-based static site generators (Hyde, Nikola, and Pelican in particular).
+

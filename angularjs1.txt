@@ -1,0 +1,114 @@
+Code licensed under the The MIT License. Documentation licensed under CC BY 3.0.
+
+https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.js
+https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js
+
+
+https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js
+https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js
+
+
+//=== https://angularjs.org/
+Because AngularJS has no global state multiple apps can run on a single page without the use of iframes. We encourage you to view-source and look around.
+
+
+.directive example
+
+ .directive('pane', function() {
+    return {
+      require: '^tabs',
+      restrict: 'E',
+      transclude: true,
+      scope: { title: '@' },
+      link: function(scope, element, attrs, tabsCtrl) {
+        tabsCtrl.addPane(scope);
+      },
+      template:
+        '<div class="tab-pane" ng-class="{active: selected}" ng-transclude>' +
+        '</div>',
+      replace: true
+    };
+  })
+
+
+
+
+//=============
+ <pane title="Localization">
+        Date: {{ '2012-04-01' | date:'fullDate' }} <br>
+        Currency: {{ 123456 | currency }} <br>
+        Number: {{ 98765.4321 | number }} <br>
+      </pane>
+
+-->
+<div class="tab-pane ng-scope ng-isolate-scope active" ng-class="{active: selected}" ng-transclude="" title="Localization"><span class="ng-binding ng-scope">
+    Date: Sunday, April 1, 2012 </span><br class="ng-scope"><span class="ng-binding ng-scope">
+    Currency: $123,456.00 </span><br class="ng-scope"><span class="ng-binding ng-scope">
+    Number: 98,765.432 </span><br class="ng-scope">
+  </div>
+
+
+
+//===
+https://docs.angularjs.org/tutorial
+git clone --depth=14 https://github.com/angular/angular-phonecat.git
+
+*** The --depth=14 option just tells Git to pull down only the last 14 commits. This makes the download much smaller and faster.
+
+cd angular-phonecat
+
+
+
+//===
+Install Node.js
+
+http://nodejs.org/dist/v0.10.35/x64/node-v0.10.35-x64.msi
+
+node --version
+npm --version
+
+
+$ npm install
+Error: ENOENT, stat 'C:\Users\eltonden\AppData\Roaming\npm'
+
+--> 
+Manually creating a folder named 'npm' in the displayed path fixed the problem.
+
+npm WARN optional dep failed, continuing fsevents@0.3.1
+...
+
+
+
+
+--> The issue was resolved after running the command prompt as an administrator
+
+--> 
+npm install npm -g
+The process of doing that will setup all the required directories.
+
+-->
+Install a stable version instead of the latest one, I have downgrade my version to node-v0.10.29-x86.msi from 'node-v0.10.33-x86.msi' and it is working well for me!
+
+
+
+
+//===
+npm start : start a local development web-server
+npm test : start the Karma unit test runner
+npm run protractor : run the Protractor end to end (E2E) tests
+npm run update-webdriver : install the drivers needed by Protractor
+
+
+
+//===
+ a set of drivers to allow it to interact with the browser. You can install these drivers by running:
+
+npm run update-webdriver
+(You should only need to do this once.)
+
+Since Protractor works by interacting with a running application, we need to start our web server:
+
+npm start
+Then in a separate terminal/command line window, we can run the Protractor test scripts against the application by running:
+
+npm run protractor

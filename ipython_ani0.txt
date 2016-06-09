@@ -1,0 +1,74 @@
+//=== http://matplotlib.org/1.4.2/examples/animation/index.html
+
+
+C:\Users\eltonden\Anaconda\lib\site-packages\matplotlib\figure.py:387: 
+UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
+  "matplotlib is currently using a non-GUI backend, "
+
+
+???
+Remove the first ax = fig.add_axes(), and replace the second line with
+ax = fig.add_axes([0, 0, 1, 1]).
+
+The add_axes method requests the size of the axis in relative coordinates, in the form left, bottom, width, height with values between 0 and 1, see e.g. matplotlib tutorial.
+
+You may also try fig.add_subplot(111) instead of fig.add_axes() or fig,ax = subplots() to create your figure and axis objects. The latter assumes that you have populated the interactive namespace matplotlib (%pylab) call in IPython.
+
+
+???
+I had to replace the matploblibrc file with a new copy, started IPython QT Console with --pylab=None then manually entered %pylab inline in the console. Somehow this fixed the problem.
+
+
+-->
+fig1.show() cause the error
+
+plt.show() is ok , but no figure appear
+
+--> 
+# -*- noplot -*- , not the cause of problem
+matplotlib.use("Agg") , not the cause of problem
+
+--> confirmed
+use plt.show() instead of figure.show()
+
+
+
+//=== http://stackoverflow.com/questions/9663562/what-is-difference-between-init-and-call-in-python 
+ want to know what is difference between __init__ and __call__ methods?
+
+For example :
+
+class test:
+
+  def __init__(self):
+    self.a = 10
+
+  def __call__(self): 
+    b = 20
+
+
+class foo:
+    def __init__(self, a, b, c):
+        # ...
+
+x = foo(1, 2, 3) # __init__
+The second implements function call operator.
+
+class foo:
+    def __call__(self, a, b, c):
+        # ...
+
+x = foo()
+x(1, 2, 3) # __call__
+
+
+
+//===
+scipy.beta
+
+The probability density function for beta is:
+
+beta.pdf(x, a, b) = gamma(a+b)/(gamma(a)*gamma(b)) * x**(a-1) *
+(1-x)**(b-1),
+
+for 0 < x < 1, a > 0, b > 0.

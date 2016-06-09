@@ -1,0 +1,16 @@
+//=== anaconda cmd prompt
+C:\Users\eltonden\Anaconda>python --version
+Python 2.7.8 :: Anaconda 2.1.0 (64-bit)
+
+C:\Users\eltonden\Anaconda>
+
+
+>conda list
+>conda -h
+
+conda install <pkg name>. If a conda package is not available in the Continuum
+Analytics repository (there are many more available in the repository than are
+included in the installer), you can check binstar.org to see if someone has uploaded
+tthe conda package you are looking for.
+In addition, you can always install a package by the usual means, e.g. pip install,
+or from source using a setup.py file

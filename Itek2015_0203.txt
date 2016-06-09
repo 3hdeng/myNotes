@@ -1,0 +1,14 @@
+fetch top head
+fetch , clone difference
+
+
+docker image for amazon ec2
+https://registry.hub.docker.com/search?q=library
+
+
+//=== http://aws.amazon.com/ecs/
+ec2 container service
+There is no additional charge for Amazon EC2 Container Service. You pay for AWS resources (e.g. EC2 instances or EBS volumes) you create to store and run your application. 
+
+
+https://registry.hub.docker.com/u/majorleaguesoccer/go-ec2-security-group-presence/

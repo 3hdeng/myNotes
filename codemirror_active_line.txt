@@ -1,0 +1,88 @@
+C:\workspaces\codemirror\CodeMirror\addon\selection\active-line.js
+
+
+CodeMirror.defineOption("styleActiveLine", false, function(cm, val, old) {
+    var prev = old && old != CodeMirror.Init;
+    if (val && !prev) {
+      cm.state.activeLines = [];
+      updateActiveLines(cm, cm.listSelections());
+      cm.on("beforeSelectionChange", selectionChange);
+    } else if (!val && prev) {
+      cm.off("beforeSelectionChange", selectionChange);
+      clearActiveLines(cm);
+      delete cm.state.activeLines;
+    }
+  });
+
+
+
+ function updateActiveLines(cm, ranges) {
+    var active = [];
+    for (var i = 0; i < ranges.length; i++) {
+      var range = ranges[i];
+      if (!range.empty()) continue;
+      var line = cm.getLineHandleVisualStart(range.head.line);
+      if (active[active.length - 1] != line) active.push(line);
+    }
+    if (sameArray(cm.state.activeLines, active)) return;
+    cm.operation(function() {
+      clearActiveLines(cm);
+      for (var i = 0; i < active.length; i++) {
+        cm.addLineClass(active[i], "wrap", WRAP_CLASS);
+        cm.addLineClass(active[i], "background", BACK_CLASS);
+      }
+      cm.state.activeLines = active;
+    });
+  }
+
+
+
+
+//===
+ var start = Pos(firstLine, 0);
+    this.sel = simpleSelection(start);
+
+function simpleSelection(anchor, head) {
+    return new Selection([new Range(anchor, head || anchor)], 0);
+  }
+
+
+function Range(anchor, head) {
+    this.anchor = anchor; this.head = head;
+  }
+
+  Range.prototype = {
+    from: function() { return minPos(this.anchor, this.head); },
+    to: function() { return maxPos(this.anchor, this.head); },
+    empty: function() {
+      return this.head.line == this.anchor.line && this.head.ch == this.anchor.ch;
+    }
+  };
+
+
+// Selection objects are immutable. A new one is created every time
+  // the selection changes. A selection is one or more non-overlapping
+  // (and non-touching) ranges, sorted, and an integer that indicates
+  // which one is the primary selection (the one that's scrolled into
+  // view, that getCursor returns, etc).
+  function Selection(ranges, primIndex) {
+    this.ranges = ranges;
+    this.primIndex = primIndex;
+  }
+
+
+
+var Line = CodeMirror.Line = function(text, markedSpans, estimateHeight) {
+    this.text = text;
+    attachMarkedSpans(this, markedSpans);
+    this.height = estimateHeight ? estimateHeight(this) : 1;
+  };
+  eventMixin(Line);
+  Line.prototype.lineNo = function() { return lineNo(this); };
+
+
+//===
+  signal(doc, "beforeSelectionChange", doc, obj);
+    if (doc.cm) signal(doc.cm, "beforeSelectionChange", doc.cm, obj);
+    if (obj.ranges != sel.ranges) return normalizeSelection(obj.ranges, obj.ranges.length - 1);
+    else return sel;

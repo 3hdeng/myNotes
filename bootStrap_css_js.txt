@@ -1,0 +1,71 @@
+//===
+Bootstrap makes front-end web development faster and easier. It's made for folks of all skill levels, devices of all shapes, and projects of all sizes.
+
+
+http://getbootstrap.com/getting-started/
+
+Available glyphs
+Includes 200 glyphs in font format from the Glyphicon Halflings set. Glyphicons Halflings are normally not available for free, but their creator has made them available for Bootstrap free of cost. As a thank you, we only ask that you include a link back to Glyphicons whenever possible.
+
+
+//===
+http://www.helloerik.com/bootstrap-3-less-workflow-tutorial
+
+WITHOUT LESS
+
+A lot of people just use the bootstrap.min.css file and add their own stylessheet to it. This works when you’re trying to do something very quick (or don’t have a workflow set up), or when your modifications are minimal. The drawback of this is that you are totally reliant on Bootstrap’s HTML classes to make any modifications to your HTML, i.e. if you want to hide something at a certain media size, you have to use .hidden-lg, or if you were to set up a responsive section with different widths, your HTML would need to look like <div class="col-sm-4 col-md-5 col-lg-6"></div>. If you are just using the bootstrap.min.css, you are stuck with just using the predefined styles that Bootstrap includes, and they all have to go in your HTML markup and can’t be hidden away in a stylesheet.
+
+
+HOW BOOTSTRAP USES LESS
+
+Bootstrap makes full use of Less. Almost all of the mobile first/responsive properties of the grid are built using Less variables and math functions. For example, the padding between grid columns is calculated like this:
+
+.make-row(@gutter: @grid-gutter-width) {
+  margin-left:  (@gutter / -2);
+  margin-right: (@gutter / -2);
+  .clearfix();
+}
+Or this
+
+
+// Generate the small columns
+.make-sm-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+  @media (min-width: @screen-sm) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+You might be asking “Why do I care how a mixin is made?” Well, see how both those mixins are using using a variable called @gutter? That is calculated in the variables folder:
+
+
+1
+@grid-gutter-width: 30px;
+Starting to see the picture? If you changed that 30px value, it would be calculated all over the place and boom – you have a new gutter width size. The gutter size is used all over the place, but sourced from that singular variable.
+
+Variables are used for almost everything:
+
+@font-size-base: 14px
+@grid-columns: 12;
+@container-desktop: ((940px + @grid-gutter-width));
+Everything is based on some sort of variable, all stored in one place. This lets Bootstrap be built using a set of data that is highly customizable. If you did want to dive into the Bootstrap source you could modify it heavily and still output a usable, working custom version. Or you could overwrite the variables you need in a different file. That’s not what I want to talk about today, but it is possible.
+
+Bootstrap also has a huge list of mixins that you can use in your own Less. These mixins allow you to quickly add common attributes to any styles you make. And with the way that Less lets you use parameters, you don’t have to do anything but specify how you want things to appear. For instance, one of the more common needs is a gradient. Bootstrap has a mixin already made, so all you need to do in your style is add this inside of the style you want it to mix into:
+
+
+1
+.horizontal-three-colors(@red; @yellow, 50%; @white);
+Just one simple line where you chose 3 colors and a fade point, and that outputs everything you need in the CSS from this mixin:
+
+.my-style {
+  background-image: -webkit-gradient(left, linear, 0 0, 0 100%, from(#ff0000), color-stop(50%, #ffff00), to(#ffffff));
+  background-image: -webkit-linear-gradient(left, #ff0000, #ffff00 50%, #ffffff);
+  background-image: -moz-linear-gradient(left, #ff0000, #ffff00 50%, #ffffff);
+  background-image: linear-gradient(to right, #ff0000, #ffff00 50%, #ffffff);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff0000', endColorstr='#ffffffff', GradientType=1);
+}
+No one wants to write that by hand. Using Less variables and a mixin, it’s easy. This isn’t even specific to Bootstrap, it just  happens to include it. There are a lot of other examples, check Bootstrap’s mixins.less file to see them all.

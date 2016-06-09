@@ -1,0 +1,10 @@
+//=== https://docs.angularjs.org/tutorial/step_06
+
+using an image tag with the ngSrc directive. That directive prevents the browser from treating the Angular {{ expression }} markup literally, and initiating a request to invalid URL
+
+  <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+
+invalid url, http://localhost:8000/app/{{phone.imageUrl}}, which it would have done 
+if we had only specified an attribute binding in a regular src attribute (<img src="{{phone.imageUrl}}">). 
+
+Using the ngSrc directive prevents the browser from making an http request to an invalid location.

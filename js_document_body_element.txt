@@ -1,0 +1,23 @@
+document.body
+xxx document.textarea
+xxx document.body.textarea
+xxx document.body.textareaid
+
+//==
+the classical (read non-DOM) approach would be like this:
+
+document.forms['yourform']['yourtextarea'].value = 'yourvalue';
+where in the HTML your textarea is nested somewhere in a form like this:
+
+<form name="yourform">
+    <textarea name="yourtextarea" rows="10" cols="60"></textarea>
+</form>
+
+
+//===
+
+$("#myText").val('');
+or
+
+document.getElementById('myText').value = '';
+

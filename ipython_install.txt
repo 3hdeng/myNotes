@@ -1,0 +1,7 @@
+[Q] where is ipython installed?
+C:\Users\bob\Anaconda\Lib\site-packages\IPython
+
+[Q] where is ipython notebook installed?
+C:\Users\bob\Anaconda\Lib\site-packages\IPython\html\notebookapp.py
+
+

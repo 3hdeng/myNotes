@@ -1,0 +1,58 @@
+//=== http://stackoverflow.com/questions/17502704/python-tempfile-how-to-open-several-times-the-temp-file
+http://stackoverflow.com/questions/17502704/python-tempfile-how-to-open-several-times-the-temp-file
+
+IOError: [Errno 13] Permission denied: 'c:\\users\\eltonden\\appdata\\local\\temp\\tmpfgv_n5.txt'
+
+File objects (be they temporary or otherwise) cannot be read multiple times without re-positioning the file position back to the start.
+
+Your options are:
+
+To reopen the file multiple times, creating multiple file objects for the same file.
+To rewind the file object before each read.
+
+pass delete=False to the constructor, especially on Windows, to be able to do this.
+
+To rewind, call .seek(0) on the file object.
+
+--> Set delete=False when creating the NamedTemporaryFile
+
+//=== 
+http://stackoverflow.com/questions/3924117/how-to-use-tempfile-namedtemporaryfile-in-python
+
+ by default the temporary file is deleted as soon as it is closed. To fix this use:
+
+tf = tempfile.NamedTemporaryFile(delete=False)
+
+
+import tempfile
+with tempfile.NamedTemporaryFile() as temp:
+    temp.write('Some data')
+    temp.flush()
+
+
+
+
+--> error
+matplotlib\backends\backend_agg.pyc in print_raw(self, filename_or_obj, *args, **kwargs)
+    503             close = False
+    504         try:
+--> 505             renderer._renderer.write_rgba(filename_or_obj)
+    506         finally:
+    507             if close:
+
+RuntimeError: Error writing to file
+has probolem with tempfile.NamedTemporaryFile()
+http://stackoverflow.com/questions/3924117/how-to-use-tempfile-namedtemporaryfile-in-python
+
+
+-->
+https://github.com/matplotlib/matplotlib/issues/2764
+animation save gets error writing to file with ffmpeg and ogv (or ogg) #2764
+
+
+-->
+explicitly set the save writer to be FFmpegFileWriter() as suggest here: http://stackoverflow.com/a/16721486/467314
+
+
+-->
+ it depends on the used DPI when you save. This is the list of working DPIs (checked range(50, 501, 1))

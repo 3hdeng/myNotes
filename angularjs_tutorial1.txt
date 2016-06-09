@@ -1,0 +1,1 @@
+The ng-repeat="phone in phones" attribute in the <li> tag is an Angular repeater directive. The repeater tells Angular to create a <li> element for each phone in the list using the <li> tag as the template.

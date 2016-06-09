@@ -1,0 +1,24 @@
+//=== http://askubuntu.com/questions/297151/how-to-run-32-bit-programs-on-a-64-bit-system  	 	
+64 bit os can run 32 bit + 64 bit programs , where as 32 bit can run only 32 bit program
+
+
+-->
+If you install the 32-bit compatibility libraries, you should be able to run 32 bit programs normally:
+
+sudo apt-get install ia32-libs
+
+note that this package does not exist in Ubuntu 13.10 any longer. You have to install all the required i386 libraries.
+
+
+
+-->
+ By running sudo dpkg --add-architecture i386
+
+sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0
+
+
+
+//===
+$ free -k
+$ free -m
+$ free -g

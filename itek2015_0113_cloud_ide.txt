@@ -1,0 +1,33 @@
+//=== 
+https://codio.com/
+http://yeoman.io/generators/
+https://github.com/codio/tutorial_yo_angular
+https://www.docker.com/
+https://www.chef.io/
+http://docs.saltstack.com/en/latest/index.html
+
+
+url("/artwork/weave02/weave02-large-c1ebefe2.jpg")
+
+
+//=== clouding
+vm --> container 
+ec2 --> stack
+
+heroku --> docker
+openstack, saltstack,
+
+
+//===
+ideone
+codio.com
+chef.io   
+ipython
+
+
+//===
+codemirror
+
+annotated text
+
+                               

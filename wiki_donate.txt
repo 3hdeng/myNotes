@@ -1,0 +1,111 @@
+<form id="B14_121123_5C_lg_txt_cnt-form" method="post" name="paypalcontribution" class="frbanner-form frbanner-form-3pm">
+                    <input type="hidden" name="utm_medium" value="sitenotice">
+                    <input type="hidden" name="utm_campaign" value="C14_en5C_dec_dsk_FR">
+                    <input type="hidden" name="utm_source" value="B14_121123_5C_lg_txt_cnt">
+                    <input type="hidden" name="referrer" value="">
+                    <input type="hidden" name="returnto" value="">
+                    <input type="hidden" name="language" value="en">
+                    <input type="hidden" name="country" value="US">
+                    <input type="hidden" name="currency_code" id="input_currency_code" value="USD">
+                    <input type="hidden" name="utm_key" value="">
+                    <input type="hidden" name="payment_method" value="">
+                    <input type="hidden" name="appeal" value="Sep2014Design">
+
+                    <h2>Please help Wikipedia</h2>
+
+                    <ol class="frbanner-frequency cf">
+                        <li>
+                            <label class="frbanner-btn frequency_onetime checked" onclick="toggleMonthly(false);">
+                                <input type="radio" name="frequency" id="frequency_onetime" value="onetime" checked="checked">
+                                One-time
+                            </label>
+                        </li>
+
+                        <li>
+                            <label class="frbanner-btn frequency_monthly" onclick="toggleMonthly(true);">
+                                <input type="radio" name="frequency" id="frequency_monthly" value="monthly">
+                                Monthly*
+                            </label>
+                        </li>
+                    </ol>
+
+                    <ol class="frbanner-amounts cf">
+                        <li>
+                            <ul>
+                                <li id="amount_total_1">
+                                    <input name="amount" type="radio" id="field-amount_total_1" value="3">
+                                    <label id="amount_label_1" class="frbanner-btn predefined_amount" for="field-amount_total_1">$3</label>
+                                </li>
+
+                                <li id="amount_total_2">
+                                    <input name="amount" type="radio" id="field-amount_total_2" value="5">
+                                    <label id="amount_label_2" class="frbanner-btn predefined_amount" for="field-amount_total_2">$5</label>
+                                </li>
+
+                                <li id="amount_total_3">
+                                    <input name="amount" type="radio" id="field-amount_total_3" value="10">
+                                    <label id="amount_label_3" class="frbanner-btn predefined_amount" for="field-amount_total_3">$10</label>
+                                </li>
+
+                                <li id="amount_total_4">
+                                    <input name="amount" type="radio" id="field-amount_total_4" value="20">
+                                    <label id="amount_label_4" class="frbanner-btn predefined_amount" for="field-amount_total_4">$20</label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="frbanner-amounts-row2">
+                                <li id="amount_total_5">
+                                    <input name="amount" type="radio" id="field-amount_total_5" value="30">
+                                    <label id="amount_label_5" class="frbanner-btn predefined_amount" for="field-amount_total_5">$30</label>
+                                </li>
+
+                                <li id="amount_total_6">
+                                    <input name="amount" type="radio" id="field-amount_total_6" value="50">
+                                    <label id="amount_label_6" class="frbanner-btn predefined_amount" for="field-amount_total_6">$50</label>
+                                </li>
+
+                                <li id="amount_total_7">
+                                    <input name="amount" type="radio" id="field-amount_total_7" value="100">
+                                    <label id="amount_label_7" class="frbanner-btn predefined_amount" for="field-amount_total_7">$100</label>
+                                </li>
+
+                                <li id="amount_other" class="frbanner-btn">
+                                    <input name="amount" type="radio" id="input_amount_other" value="Other" onclick="$('#input_amount_other_box').focus();">
+                                    <label for="input_amount_other" class="other" style="padding-top: .3em">Other</label>
+                                    <fieldset>
+                                        <label>$</label>
+                                        <input name="amountGiven" type="text" id="input_amount_other_box" size="3" autocomplete="off" value="" onfocus="clearOther(this);">
+                                    </fieldset>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <ol class="frbanner-submit cf">
+                        <li>
+                            <ul>
+                                <li class="paymentmethod-cc">
+                                    <button class="frbanner-btn" onclick="redirectPayment('cc'); return false;">
+                                        Credit Card
+                                    </button>
+                                </li>
+
+                                <li class="paymentmethod-pp">
+                                    <button class="frbanner-btn" onclick="redirectPayment('paypal'); return false;">
+                                        PayPal
+                                    </button>
+                                </li>
+
+                                <li class="paymentmethod-amazon no-monthly">
+                                    <button class="frbanner-btn" onclick="redirectPayment('amazon'); return false;">
+                                        Amazon
+                                    </button>
+                                </li>
+
+                                
+                            </ul>
+                        </li>
+                    </ol>
+
+                <input type="hidden" name="utm_key" value="1"></form>

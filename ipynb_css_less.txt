@@ -1,0 +1,95 @@
+https://github.com/ipython/ipython/wiki/Dev:-Compiling-.LESS-files
+
+//=== How to Compile .less Files
+For testing your development work in CSS, you'll need to compile the .less files to CSS. Make sure you have dependencies that LESS requires, including fabric, node, and lessc. Follow the below steps to compile the .less files:
+
+python setup.py css
+
+
+
+Alternatively, you can:
+
+$ cd ipython/IPython/html
+$ fab css
+[localhost] local: components/less.js/bin/lessc -x  style/style.less style/style.min.css
+[localhost] local: components/less.js/bin/lessc -x  style/ipython.less style/ipython.min.css
+
+Done
+
+
+.icon-play{background-position:-264px -72px}
+.icon-play:before{content:"\f04b"}
+
+
+//=== http://www.w3schools.com/cssref/pr_gen_content.asp
+The content property is used with the :before and :after pseudo-elements, to insert generated content.
+
+
+The ::before selector inserts content before the content of the selected element(s).
+
+Use the content property to specify the content to insert.
+
+p::before { 
+    content: "Read this -";
+    background-color: yellow;
+    color: red;
+    font-weight: bold;
+}
+
+
+http://stackoverflow.com/questions/190396/adding-html-entities-using-css-content
+
+
+
+//===  https://mathiasbynens.be/notes/css-escapes
+css string escape
+
+
+use an escape sequence representing the line feed character (U+000A), such as "\A" or "\00000a".
+
+//===
+ if you’re writing a selector for a given classname or ID, the strict syntax for identifiers applies. If you’re using a (quoted) string in CSS, you’ll only ever need to escape quotes or newline characters.
+
+
+//=== strict syntax for identifiers
+Leading digit
+for the character 1 is U+0031, so you would escape it as \000031 or \31 .
+
+Basically, to escape any numeric character, 
+just prefix it with \3 and append a space character ( ). Yay Unicode
+
+
+The following characters have a special meaning in CSS: !, ", #, $, %, &, ', (, ), *, +, ,, -, ., /, :, ;, <, =, >, ?, @, [, \, ], ^, `, {, |, }, and ~.
+for example, the plus sign (+) is U+002B, so if you would want to use it in a CSS selector, you would escape it into \2b (note the space character at the end) or \00002b (using exactly six hexadecimal digits).
+The second option is far more elegant though: just escape the character using a backslash (\), e.g. + would escape into \+.
+
+
+Theoretically, the : character can be escaped as \:, but IE < 8 doesn’t recognize that escape sequence correctly. A workaround is to use \3A instead.
+
+Any characters matching [\t\n\v\f\r] need to be escaped based on their Unicode code points. The space character ( ) can simply be backslashed (\ ). Other whitespace characters don’t need to be escaped.
+
+//===
+@base: #f938ab;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow:         @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.box {
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div { .box-shadow(0 0 5px, 30%) }
+}
+compiles to
+
+.box {
+  color: #fe33ac;
+  border-color: #fdcdea;
+}
+.box div {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}

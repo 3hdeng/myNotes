@@ -1,0 +1,17 @@
+//=== https://www.daniweb.com/software-development/python/threads/361025/numpy-randn-sampling-in-a-range-of-1-and-1
+
+numpy.random.rand() : uniform distribution over [0,1)
+numpy.random.randn() : normal distribution,  univariate “normal” (Gaussian) distribution of mean 0 and variance 1 
+
+For random samples from N(\mu, \sigma^2), use:
+
+sigma * np.random.randn(...) + mu
+
+
+If you only want to add some random noise to your data, you could add a normal random sample with a small standard deviation and clip the result in the interval [-1.0, 1.0] like this ... However, due to the clipping, your array won't exactly be a normal perturbation of the initial array, and this distorsion increases with the value of sigma. Mathematically speaking, it is impossible to require both a normal distribution and bounds…
+
+sigma = 0.1
+a = numpy.clip(X + sigma * randn(100, 20), -1.0, 1.0)
+
+
+

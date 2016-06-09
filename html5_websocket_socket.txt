@@ -1,0 +1,50 @@
+Difference between socket and websocket?
+
+unix berkley socket, tcp/udp/ip socket?
+html5 websocket
+
+
+//=== 2013
+http://stackoverflow.com/questions/16945345/differences-between-tcp-sockets-and-web-sockets-one-more-time
+
+
+
+//=== 2011
+http://stackoverflow.com/questions/4973622/difference-between-socket-and-websocket
+
+
+
+--> 
+*** WebSockets typically run 
+from browsers connecting to Application Server over a protocol "similar to HTTP"
+
+
+*** plain sockets are more powerful and generic. They run over TCP/IP but they are
+ not restricted to browsers or HTTP protocol.
+
+
+*** Actually the WebSocket protocol is only superficially similar to HTTP. It's not real HTTP at all. 
+
+--> WebSockets are not similar to HTTP. They are normal sockets with some framing and an HTTP-compatible handshake
+--> WebSockets is not limited to browser clients. See libwebsocket which has both a non-browser client and a server.
+
+
+
+*** The Socket.IO module available for node.js can help a lot, 
+but note that it is not a pure WebSocket module in its own right.
+
+
+*** Websockets use sockets in their implementation. Websockets are based on a standard protocol (now in final call, but not yet final) that defines a connection "handshake" and message "frame." 
+
+
+
+
+//==================
+
+ In fact, WebSockets is built on normal TCP sockets and uses frame headers that contains the size of each frame and indicate which frames are part of a message. The WebSocket API re-assembles the TCP chunks of data into frames which are assembled into messages before invoking the message event handler once per message.
+
+
+
+When you send bytes from a buffer with a normal TCP socket, the send function returns the number of bytes of the buffer that were sent. If it is a non-blocking socket or a non-blocking send then the number of bytes sent may be less than the size of the buffer. If it is a blocking socket or blocking send, then the number returned will match the size of the buffer but the call may block. With WebSockets, the data that is passed to the send method is always either sent as a whole "message" or not at all. Also, browser WebSocket implementations do not block on the send call.
+
+But there are more important differences are on the receive side of things. When the receiver does a recv (or read) on a TCP socket, there is no guarantee that the number of bytes return correspond to a single send (or write) on the sender side. It might be the same, it may be less (or zero) and it might even be more (in which case bytes from multiple send/writes are received). With WebSockets, the receipt of a message is event driven (you generally register a message handler routine), and the data in the event is always the entire message that the other side sent.

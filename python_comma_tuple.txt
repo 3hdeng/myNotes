@@ -1,0 +1,9 @@
+d2, = values[s] is just like 
+a,b=f(), except for unpacking 1 element tuples.
+
+
+line, = ax.plot([], [], lw=2)
+
+(line, x)= ax.plot([], [], lw=2)
+
+

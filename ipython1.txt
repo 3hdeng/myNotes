@@ -1,0 +1,218 @@
+﻿high performance tools for parallel computing.
+
+
+While the focus of the project is Python, our architecture is designed in a 
+language-agnostic way to facilitate interactive computing in any language.
+
+
+
+We ship the official IPython kernel, but kernels for other languages such as 
+Julia and Haskell are actively developed and used. 
+
+Additionally, the IPython kernel supports multi-language integration, 
+letting you mix Python code with Cython, R, Octave, and 
+scripting in Bash, Perl or Ruby.
+
+
+//=== https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks
+a curated collection of IPython notebooks 
+
+curated
+curator
+A curate /ˈkjʊərɨt/[1] is a person who is invested with the care or cure (cura) of souls of a parish. In this sense "curate" correctly means a parish priest; but in English-speaking countries the term curate is commonly used to describe clergy who are assistants to the parish priest. The duties or office of a curate are called a curacy (as the office of a president is a presidency).
+
+
+curated commerce means curating products to create unique product lines to offer customers a unique collection 
+
+Here, "curated" means 'carefully selected'; "hand curated" implies that someone made the choices personally. 
+ Here is a previous thread on this use of curated: curated selection of fabrics [curated]
+
+http://forum.wordreference.com/showthread.php?t=2798721
+
+
+
+//=== install ipython
+> conda update conda
+> conda update ipython
+
+
+or traditional way
+> pip install ipython
+
+Or if you want to also get the dependencies for the IPython notebook:
+> pip install "ipython[notebook]"
+
+
+or 
+manually download IPython from Github or PyPI. To install one of these versions, unpack it and run the following from the top-level source directory using the Terminal:
+> python setup.py install
+
+*** ipython is a module for python from this perspective
+
+
+//=== how to start ipython
+anaconda cmd prompt
+>ipython
+
+? Introduction and overview of IPython’s features. 
+%quickref Quick reference. 
+help Python’s own help system. 
+object? Details about ‘object’, use ‘object??’ for extra details. 
+
+
+
+
+//=== http://ipython.org/ipython-doc/stable/interactive/tutorial.html
+line-oriented and cell-oriented magics. 
+
+Line magics are prefixed with the % character and work much like OS command-line calls: 
+they get as an argument the rest of the line, where arguments are passed without parentheses or quotes. 
+
+Cell magics are prefixed with a double %%, and they are functions that get as an argument 
+not only the rest of the line, but also the lines below it in a separate argument.
+
+
+The %run magic command allows you to run any python script and load all of its data directly into the interactive namespace. Since the file is re-read from disk each time, changes you make to it are reflected immediately 
+
+
+%run
+%edit
+
+%history 
+
+
+%pastebin 3 18-20 ~1/1-5
+This will take line 3 and lines 18 to 20 from the current session, and lines 1-5 from the previous session.
+
+
+
+> !ping www.bbc.co.uk
+You can capture the output into a Python list, e.g.: 
+> files = !ls. 
+
+To pass the values of Python variables or expressions to system commands, 
+prefix them with $: 
+> !grep -rF $pattern ipython/
+
+//=== 
+> ipython profile create 
+to produce the default config files. 
+These will be placed in ~/.ipython/profile_default, and contain comments explaining what the various options do.
+
+http://ipython.org/ipython-doc/stable/interactive/tutorial.html
+
+D:\workspaces\ipython>ipython profile create
+[ProfileCreate] Generating default config file: u'C:\\Users\\eltonden\\.ipython\\profile_default\\ipython_config.py'
+[ProfileCreate] Generating default config file: u'C:\\Users\\eltonden\\.ipython\\profile_default\\ipython_qtconsole_config.py'
+[ProfileCreate] Generating default config file: u'C:\\Users\\eltonden\\.ipython\\profile_default\\ipython_notebook_config.py'
+[ProfileCreate] Generating default config file: u'C:\\Users\\eltonden\\.ipython\\profile_default\\ipython_nbconvert_config.py'
+
+
+*** If you want some code to be run at the beginning of every IPython session, 
+the easiest way is to add Python (.py) or IPython (.ipy) scripts to your profile_default/startup/ directory. Files here will be executed as soon as the IPython shell is constructed, before any other code or scripts you have specified. The files will be run in order of their names, so you can control the ordering with prefixes, like 10-myimports.py.
+
+import os
+os.chdir('....')
+os.system('cd c:\mydir')
+In fact, os.system() can execute any command that windows command prompt can execute, not just change dir.
+
+
+import sys
+import os
+
+#clear the terminal
+os.system('clear')
+
+#custom prompt
+sys.ps1 = "[custom] "
+os.environ['PYTHONINSPECT'] = 'True'
+
+not work as expected
+--> http://www.computerhope.com/prompthl.htm
+myipython.bat
+chdir D:\workspaces\ipython
+D:
+prompt $P$G
+ipython --profile=3h
+
+
+
+//=== http://ipython.org/ipython-doc/stable/config/intro.html#profiles
+
+> ipython profile create foo   # create the profile foo
+> ipython --profile=foo        # start IPython using the new profile
+
+
+Profiles are typically stored in The IPython directory, but you can also keep a profile in the current working directory, for example to distribute it with a project. To find a profile directory on the filesystem:
+> ipython locate profile foo
+
+
+
+
+
+
+
+
+//=== ipython tutorial
+http://ipython.org/ipython-doc/stable/interactive/tutorial.html
+
+
+
+[Q] what's ipython ?
+[Q] what's ipython notebook ?
+[Q] what's ipython Qt console?
+
+
+
+//=== ipython notebook :
+0. a web app
+1. turn console-based ipython to web-based
+2. code + contents
+
+
+
+
+http://ipython.org/ipython-doc/stable/notebook/notebook.html#introduction
+*** to start an ipython notebook server from the command line using the following command:
+
+> ipython notebook
+ You can also drag and drop .ipynb notebooks and standard .py Python source code files into the notebook list area.
+
+
+*** nbconvert and nbviewer
+Notebooks may be exported to a range of static formats, including HTML (for example, for blog posts), reStructeredText, LaTeX, PDF, and slide shows,
+ via the nbconvert command.
+
+In effect, nbviewer is simply nbconvert as a web service
+
+
+
+
+//=== how to run code in the IPython Notebook
+* Shift-Enter
+There are two other keyboard shortcuts for running code:
+* Alt-Enter runs the current cell and inserts a new one below.
+* Ctrl-Enter run the current cell and enters command mode
+
+
+//=== http://ipython.org/ipython-doc/stable/notebook/notebook.html#introduction
+Shift-Enter: run cell
+Execute the current cell, show output (if any), and jump to the next cell below. If Shift-Enter is invoked on the last cell, a new code cell will also be created. Note that in the notebook, typing Enter on its own never forces execution, but rather just inserts a new line in the current cell. Shift-Enter is equivalent to clicking the Cell | Run menu item.
+
+•Ctrl-Enter: run cell in-place
+Execute the current cell as if it were in “terminal mode”, where any output is shown, but the cursor remains in the current cell. The cell’s entire contents are selected after execution, so you can just start typing and only the new input will be in the cell. This is convenient for doing quick experiments in place, or for querying things like filesystem content, without needing to create additional cells that you may not want to be saved in the notebook.
+
+•Alt-Enter: run cell, insert below
+Executes the current cell, shows the output, and inserts a new cell between the current cell and the cell below (if one exists). This is thus a shortcut for the sequence Shift-Enter, Ctrl-m a. (Ctrl-m a adds a new cell above the current one.)
+
+•Esc and Enter: Command mode and edit mode
+In command mode, you can easily navigate around the notebook using keyboard shortcuts. In edit mode, you can edit text in cells.
+
+
+For the full list of available shortcuts, click Help, Keyboard Shortcuts in the notebook menus.
+
+
+
+[Q] where does ipython notebook store the new document?
+--> where you start notebook. --> ex1.ipynb
+

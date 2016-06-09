@@ -1,0 +1,36 @@
+C:\workspaces\codemirror\CodeMirror\addon\selection\active-line.js
+
+
+CodeMirror.defineOption("styleActiveLine", false, function(cm, val, old) {
+    var prev = old && old != CodeMirror.Init;
+    if (val && !prev) {
+      cm.state.activeLines = [];
+      updateActiveLines(cm, cm.listSelections());
+      cm.on("beforeSelectionChange", selectionChange);
+    } else if (!val && prev) {
+      cm.off("beforeSelectionChange", selectionChange);
+      clearActiveLines(cm);
+      delete cm.state.activeLines;
+    }
+  });
+
+
+
+ function updateActiveLines(cm, ranges) {
+    var active = [];
+    for (var i = 0; i < ranges.length; i++) {
+      var range = ranges[i];
+      if (!range.empty()) continue;
+      var line = cm.getLineHandleVisualStart(range.head.line);
+      if (active[active.length - 1] != line) active.push(line);
+    }
+    if (sameArray(cm.state.activeLines, active)) return;
+    cm.operation(function() {
+      clearActiveLines(cm);
+      for (var i = 0; i < active.length; i++) {
+        cm.addLineClass(active[i], "wrap", WRAP_CLASS);
+        cm.addLineClass(active[i], "background", BACK_CLASS);
+      }
+      cm.state.activeLines = active;
+    });
+  }

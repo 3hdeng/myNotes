@@ -1,0 +1,10 @@
+//===  http://stackoverflow.com/questions/658885/how-do-you-get-git-to-always-pull-from-a-specific-branch
+Recently, I had to revert to a previous branch, and did so with git checkout 4f82a29. When I was again ready to pull, I found that I had to set my branch back to master. Now, I can not pull using a straight git pull but instead, have to specify git pull origin master, which is annoying, and indicates to me that I don't fully understand what is going on.
+
+What has changed which does not allow me to do a straight git pull without specifying origin 
+
+
+
+
+branch.master.remote=origin
+branch.master.merge=refs/heads/master

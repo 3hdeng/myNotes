@@ -1,0 +1,274 @@
+
+[Q] how to create 2x2 layout in css ?
+
+http://doctype.com/make-simple-2x2-layout-css
+Simple. Create a "box" css class that is floated like this:
+
+<style type="text/css">
+div.box {
+margin:0 1% 1% 0;
+float:left;
+clear:none;
+width:48%;
+height:300px;
+border:2px solid #808080;
+}
+</style>
+
+<div class="box">div 1</div>
+<div class="box">div 2</div>
+<div class="box">div 3</div>
+<div class="box">div 4</div>
+
+//=== http://stackoverflow.com/questions/14798430/twitter-bootstrap-make-a-2x2-grid
+Assuming that certain screen width is, for example, 480px, let's try this:
+
+<div class="container-fluid">
+   <div class="row-fluid">
+      <div class="span3"></div>
+      <div class="span3"></div>
+      <div class="span3"></div>
+      <div class="span3"></div>
+   </div>
+</div>
+By default, this div.span* spans the entire width of the screen, like this:
+
+[x][x][x][x]
+At a certain screen width, I want this to appear in a 2x2 grid, like this:
+
+[x][x]
+[x][x]
+
+
+@media only screen and (max-width: 480px) {
+
+//some code to take away left or right margins
+
+.span3 {
+    width: 50%; //50% minus any margins, of course
+}
+
+
+}
+
+
+
+//===
+http://stackoverflow.com/questions/17921482/making-a-2x2-grid-with-divs-fullscreen-in-html
+
+There is a nice css property box-sizing that you can set to border-box so that the widths of borders and padding are included in the width of an element. This way you can also add as much padding as you need to your divs without worrying that they become too wide.
+
+
+
+having 4 div elements floated to the left, 
+each 50% wide and have used box-sizing property so that the borders don't interrupt the div alignment. 
+These div elements are 50% in width and are 50% in height
+
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+div {
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+
+div:nth-of-type(1) {
+    background: #ccc;
+}
+
+div:nth-of-type(2) {
+    background: #bbb;
+    border-left: 1px solid #f00;
+}
+
+div:nth-of-type(3) {
+    background: #aaa;
+    border-top: 1px solid #f00;
+}
+
+div:nth-of-type(4) {
+    background: #ddd;
+    border-top: 1px solid #f00;
+    border-left: 1px solid #f00;
+}
+
+
+
+
+//=== 
+http://speckyboy.com/2013/01/31/collection-of-useful-open-source-css-resources/
+
+ CSS3 checkbox
+This unique Codepen demo page includes a lot of custom CSS3 checkbox styles. This is 
+
+ CSS3 Pictogram Buttons
+One% CSS Grid
+
+ Makisu 3D Menu Dropdown
+
+
+
+
+
+http://lifehacker.biz/articles/open-source-web-design-templates-and-tools/
+
+
+//=== https://csscreator.com/version2/pagelayout.php
+
+About the CSS Layout Generator
+The CSS Layout Generator was first released by Tony Aslett in October 2003, since then over 871,000 layouts have been generated. Updated in November 2010, HTML5 doctype can now be selected and a simple HTML5 template with appropriate tags will be created. Other HTML and XHTML doctypes are still available.
+The generator helps you create the structure of your website template using valid HTML and CSS.
+You can create a fluid or fixed width floated column layout, with up to 3 columns and with header and footer. Values can be specified in either pixels, ems or percentages.
+The generator requires a modern DOM capable browser with JavaScript enabled.
+
+
+
+//===
+http://www.thenoodleincident.com/tutorials/box_lesson/boxes.html
+
+http://www.cssportal.com/layout-generator/
+
+http://www.webdesignbooth.com/15-extremely-useful-css-grid-layout-generator-for-web-designers/
+
+http://www.pagecolumn.com/grid_layout_generator.htm
+http://www.pagecolumn.com/2_col_generator.htm
+
+
+//=== from nested to parallel layout
+Why the Parallel layout?
+We have proved that the nested layout could build liquid layouts up to 5 columns. The more columns, the more wrapper div tags. Sometimes we may not like many extra div tags. The parallel layout is the solution.
+
+The same as the nested design, we use left instead of margin to seperate columns.
+    <div class="header">
+	         header
+	    </div> 
+	    <div class="wrapper">
+	        <div class="left1">
+	            left1
+	        </div>
+            <div class="left2">
+	            left2
+	        </div>
+	        <div class="left3">
+	            left3
+	        </div>	        
+	        <div class="right">
+	            right
+	        </div>  	       
+	    </div>
+	    <div class="footer">
+	        footer
+	    </div>
+
+
+//=== nested 3-column
+<div class="colmask">
+    <div class="header">
+	    head 
+    </div>
+        <div class="colmid">
+            <div class="colleft">
+                <div class="col1">
+                      middle
+                </div>
+                <div class="col2">
+                      left
+                </div>
+                <div class="col3">
+                      right
+                </div>
+            </div>
+        </div>
+    <div class="footer">
+	    footer 
+    </div>
+</div>
+
+//=== nested 2-column
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>2 Column CSS Layout - concise design</title>
+<style type='text/css'>
+.mask{
+   position: relative;
+   overflow: hidden;
+   margin: 0px auto;
+   width: 100%;
+   background-color: #f4f4f4
+}
+.header{
+   float: left;
+   width: 100%;
+   background-color: #f4f4f4
+}
+.colleft{
+   position: relative;
+   width: 100%;
+   right: 40%;
+   background-color: #f4f4f4
+}
+.col1{
+   position: relative;
+   overflow: hidden;
+   float: left;
+   width: 38%;
+   left: 101%;
+   background-color: #e6e6e6
+}
+.col2{
+   position: relative;
+   overflow: hidden;
+   float: left;
+   width: 58%;
+   left: 3%;
+   background-color: #e6e6e6
+}
+.footer{
+   float: left;
+   width: 100%;
+   background-color: #b4caf7
+}
+body {
+   padding: 0px;
+   margin: 0px;
+   font-size: 90%;
+   background-color: #e7e7de
+}
+</style>
+</head>
+<body>
+<div class="mask">
+    <div class="header">
+        header
+    </div>
+    <div class="colleft">
+        <div class="col1">
+            right
+        </div>
+        <div class="col2">
+            left
+        </div> 
+    </div> 
+    <div class="footer">
+        footer
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,279 @@
+
+
+class NotebookApp(BaseIPythonApplication):
+ self.http_server = httpserver.HTTPServer(self.web_app, ssl_options=ssl_options,
+                                                 xheaders=self.trust_xheaders)
+    
+
+
+class NotebookWebApplication(web.Application):
+
+
+
+__init__(self, **kwargs)
+
+
+ipython notebook source code
+https://github.com/ipython/ipython/archive/rel-2.1.0.zip
+
+//=== C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\notebookapp.py
+
+base_url = py3compat.unicode_to_str(base_url, 'ascii')
+        template_path = settings_overrides.get("template_path", os.path.join(os.path.dirname(__file__), "templates"))
+        jenv_opt = jinja_env_options if jinja_env_options else {}
+        env = Environment(loader=FileSystemLoader(template_path),**jenv_opt )
+
+
+//===
+ C:\Users\eltonden\Anaconda\Lib\site-packages\jinja2\loaders.py
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\utils\traitlets.py
+class Bool(TraitType):
+    """A boolean (True, False) trait."""
+
+    default_value = False
+    info_text = 'a boolean'
+
+    def validate(self, obj, value):
+        if isinstance(value, bool):
+            return value
+        self.error(obj, value)
+
+
+-->
+json = Bool(False, config=True,
+          help="If True, each line of output will be a JSON object with the "
+                  "details from the server info file.")
+
+
+
+def _ip_changed(self, name, old, new):
+        if new == u'*': self.ip = u''
+
+port = Integer(8888, config=True,
+        help="The port the notebook server will listen on."
+    )
+
+
+cookie_secret = Bytes(b'', config=True,
+        help="""The random bytes used to secure cookies.
+        By default this is a new random number every time you start the Notebook.
+        Set it to a value in a config file to enable logins to persist across server sessions.
+        
+        Note: Cookie secrets should be kept private, do not share config files with
+        cookie_secret stored in plaintext (you can read the value from a file).
+        """
+    )
+    def _cookie_secret_default(self):
+        return os.urandom(1024)
+
+
+
+
+//===
+def _base_url_changed(self, name, old, new):
+        if not new.startswith('/'):
+            self.base_url = '/'+new
+        elif not new.endswith('/'):
+            self.base_url = new+'/'
+
+
+
+//=== ioloop.IOLoop
+C:\Users\eltonden\Anaconda\Lib\site-packages\zmq\eventloop\ioloop.py
+ ioloop.IOLoop.instance().start()
+
+
+# public API name
+IOLoop = ZMQIOLoop
+
+
+class ZMQIOLoop(PollIOLoop):
+...
+@staticmethod
+    def instance():
+        """Returns a global `IOLoop` instance.
+
+
+
+
+//===
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\notebookapp.py
+launch_new_instance = NotebookApp.launch_instance
+??? who use this
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\config\application.py
+  
+
+def launch_instance(cls, argv=None, **kwargs):
+        """Launch a global instance of this Application
+        
+        If a global instance already exists, this reinitializes and starts it
+        """
+        app = cls.instance(**kwargs)
+        app.initialize(argv)
+564     app.start()
+
+
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\core\application.py
+"""
+An application for IPython.
+
+All top-level applications should use the classes in this module for
+handling configuration and creating configurables.
+
+The job of an :class:`Application` is to create the master configuration
+object and then create the configurable objects, passing the config to them.
+
+
+..."""
+
+
+core\application.py
+class BaseIPythonApplication(Application):
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\config\application.py
+SingletonConfigurable.__init__(self, **kwargs)
+
+class Application(SingletonConfigurable):
+    """A singleton application with full configuration support."""
+
+    # The name of the application, will usually match the name of the command
+    # line application
+
+
+
+//=== import webbrowser
+C:\Users\eltonden\Anaconda\Lib\site-packages\pythonwin\pywin\Demos\ocx\webbrowser.py
+
+
+//=== tree\js\main.js, notebooklist.js, kernellist.js
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\static\tree\js\notebooklist.js
+
+new_notebook= function() ...
+
+ var url = utils.url_join_encode(
+            base_url,
+            'api/notebooks',
+            path
+        );
+
+
+
+
+
+//===
+C:\Users\eltonden\Anaconda\Lib\site-packages\tornado\httpserver.py
+
+return url_escape(url_path_join(
+            self.base_url, 'api', 'notebooks', path, name
+        ))
+
+
+ location = url_path_join(self.base_url, 'api/notebooks',
+            path, name, 'checkpoints', checkpoint['id'])
+
+
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\services\notebooks\handlers.py
+Notebook handlers
+put
+get
+post
+delete
+...
+
+
+
+
+//=== save operation
+def _save_notebook(self, model, path, name):
+...
+  location = False
+self._finish_model(model, location)
+
+
+
+
+//===
+C:\Users\eltonden\Anaconda\Lib\site-packages\tornado\gen.py
+C:\Users\eltonden\Anaconda\Lib\site-packages\tornado\web.py
+C:\Users\eltonden\Anaconda\Lib\site-packages\tornado\http1connection.py
+C:\Users\eltonden\Anaconda\Lib\site-packages\tornado\httpserver.py
+C:\Users\eltonden\Anaconda\Lib\site-packages\tornado\ioloop.py
+
+
+
+
+//=== json.dumps()
+C:\Users\eltonden\Anaconda\Lib\json\__init__.py
+
+
+
+
+//===
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\services\notebooks\nbmanager.py
+def create_notebook(self, model=None, path=''):
+...
+	if 'name' not in model:
+            model['name'] = self.increment_filename('Untitled', path)
+            
+        model['path'] = path
+        model = self.save_notebook(model, model['name'], model['path'])
+        return model
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\html\services\notebooks\filenbmanager.py
+def save_notebook(self, model, name='', path=''):
+...
+ # Save the notebook file
+        os_path = self._get_os_path(new_name, new_path)
+        nb = current.to_notebook_json(model['content'])
+        
+        self.check_and_sign(nb, new_name, new_path)
+
+	    self.log.debug("Autosaving notebook %s", os_path)
+            with atomic_writing(os_path, encoding='utf-8') as f:
+                current.write(nb, f, u'json')
+        
+
+
+
+C:\Users\eltonden\Anaconda\Lib\site-packages\IPython\utils\io.py
+def atomic_writing(path, text=True, encoding='utf-8', **kwargs):
+    """Context manager to write to a file only if the entire write is successful.
+
+    This works by creating a temporary file in the same directory, and renaming
+    it over the old file if the context is exited without an error. If the
+    target file is a symlink or a hardlink, this will not be preserved: it will
+    be replaced by a new regular file.
+
+    On Windows, there is a small chink in the atomicity: the target file is
+    deleted before renaming the temporary file over it. This appears to be
+    unavoidable.
+
+	"""
+    # realpath doesn't work on Windows: http://bugs.python.org/issue9949
+    # Luckily, we only need to resolve the file itself being a symlink, not
+    # any of its directories, so this will suffice:
+    if os.path.islink(path):
+        path = os.path.join(os.path.dirname(path), os.readlink(path))
+
+    dirname, basename = os.path.split(path)
+    handle, tmp_path = tempfile.mkstemp(prefix=basename, dir=dirname)
+    if text:
+        fileobj = io.open(handle, 'w', encoding=encoding, **kwargs)
+    else:
+        fileobj = io.open(handle, 'wb', **kwargs)

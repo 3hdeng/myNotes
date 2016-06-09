@@ -1,0 +1,68 @@
+//=== lesscss.org
+
+Installation
+The easiest way to install Less on the server, is via npm, the node.js package manager, as so:
+
+$ npm install -g less
+Command-line usage
+Once installed, you can invoke the compiler from the command-line, as such:
+
+$ lessc styles.less
+This will output the compiled CSS to stdout, you may then redirect it to a file of your choice:
+
+$ lessc styles.less > styles.css
+
+
+//===
+To output minified CSS, simply pass the -x option. If you would like more involved minification, the Clean CSS is also available with the --clean-css plugin.
+
+
+//===
+Client-side is the easiest way to get started and good for developing with Less, but in production, when performance and reliability is important, we recommend pre-compiling using node.js or one of the many third party tools available.
+
+To start off, link your .less stylesheets with the rel attribute set to "stylesheet/less":
+
+<link rel="stylesheet/less" type="text/css" href="styles.less" />
+Next, download less.js and include it in a <script></script> tag in the <head> element of your page:
+
+<script src="less.js" type="text/javascript"></script>
+
+*** When you link more than one .less stylesheet 
+each of them is compiled independently. So any variables, mixins or namespaces you define in a stylesheet are 
+not accessible in any other.
+
+
+
+//===
+It allows you to:
+Freely download and use Less.js, in whole or in part, for personal, company internal or commercial purposes
+Use Less.js in packages or distributions that you create
+
+
+It forbids you to:
+Redistribute any piece of Less.js without proper attribution
+
+
+
+
+//=== less function
+data-uri()
+
+Inlines a resource and falls back to url() if the ieCompat option is on and the resource is too large, or if you use the function in the browser. If the MIME type is not given then node uses the mime package to determine the correct mime type.
+Parameters:
+
+mimetype: (Optional) A MIME type string.
+url: The URL of the file to inline.
+Example: data-uri('../data/image.jpg');
+
+Output: url('data:image/jpeg;base64,bm90IGFjdHVhbGx5IGEganBlZyBmaWxlCg==');
+
+Output in browser: url('../data/image.jpg');
+
+Example: data-uri('image/jpeg;base64', '../data/image.jpg');
+
+Output: url('data:image/jpeg;base64,bm90IGFjdHVhbGx5IGEganBlZyBmaWxlCg==');
+
+Example: data-uri('image/svg+xml;charset=UTF-8', 'image.svg');
+
+Output: url("data:image/svg+xml;charset=UTF-8,%3Csvg%3E%3Ccircle%20r%3D%229%22%2F%3E%3C%2Fsvg%3E");

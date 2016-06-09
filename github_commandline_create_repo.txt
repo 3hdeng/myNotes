@@ -1,0 +1,69 @@
+Per-repository
+
+You can also set different pull and push URLs for every remote separately, 
+by changing remote.name.pushUrl in the repository's own .git/config:
+
+[remote "origin"]
+    url = git://nullroute.eu.org/~grawity/rwho.git
+    pushUrl = ssh://sine/pub/git/rwho.git
+
+-->
+[remote "github"]
+	
+	url = git@github.com:3hdeng/phonecat1.git
+	
+	fetch = +refs/heads/*:refs/remotes/github/*
+	
+	pushUrl=https://github.com/3hdeng/phonecat1.git
+	
+
+
+
+
+Total 154 (delta 5), reused 154 (delta 5)
+To https://github.com/3hdeng/phonecat1.git
+ ! [remote rejected] master -> master (shallow update not allowed)
+error: failed to push some refs to 'https://github.com/3hdeng/phonecat1.git'
+
+
+-->
+http://stackoverflow.com/questions/11375070/pushing-to-github-after-a-shallow-clone
+ Antoine Pelisse's suggestion of creating a patch from the shallow clone and applying it to a regular clone of the repository is a good approach because it preserves the commit history from the shallow clone.
+
+
+
+//=== http://stackoverflow.com/questions/2423777/is-it-possible-to-create-a-remote-repo-on-github-from-the-cli-without-ssh
+
+You can create a GitHub repo via the command line using the GitHub API. Check out the repository API. If you scroll down about a third of the way, you'll see a section entitled "Creating and Deleting Repositories" that explains how to create a repo via the API (right above that is a section that explains how to fork a repo with the API, too). Obviously you can't use git to do this, but you can do it via the command line with a tool like curl.
+
+Outside of the API, there's no way to create a repo on GitHub via the command line. As you noted, GitHub doesn't allow shell access, etc., so aside from the GitHub API, the only way to create a repo is through GitHub's web interface.
+
+//===
+CLI commands for github API v3 (replace all CAPS keywords):
+
+curl -u 'USER' https://api.github.com/user/repos -d '{"name":"REPO"}'
+# Remember replace USER with your username and REPO with your repository/application name!
+git remote add origin git@github.com:USER/REPO.git
+git push origin master
+
+
+
+curl -u '3hdeng' https://api.github.com/user/repos -d '{"name":"phonecat1"}'
+git remote add github https://github.com/3hdeng/phonecat1.git
+git remote add github git@github.com:3hdeng/phonecat1.git
+git push github master
+
+//===
+curl -u 'nyeates' https://api.github.com/user/repos -d '{"name":"projectname","description":"This project is a test"}'
+git remote add origin git@github.com:nyeates/projectname.git
+git push origin master
+
+
+curl is a unix command (above works on mac too) that retrieves and interacts with URLs. It is commonly already installed.
+"-u" is a curl parameter that specifies the user name and password to use for server authentication.
+If you just give the user name (as shown in example above) curl will prompt for a password.
+If you do not want to have to type in the password, see githubs api documentation on Authentication
+"-d" is a curl parameter that allows you to send POST data with the request
+You are sending POST data in githubs defined API format
+"name" is the only POST data required; I like to also include "description"
+I found that it was good to quote all POST data with single quotes ' '

@@ -1,0 +1,71 @@
+//=== http://stackoverflow.com/questions/1960799/using-git-and-dropbox-together-effectively
+use Dropbox as a central bare repository. 
+
+
+Setup is something like this:
+
+~/project $ git init
+~/project $ git add .
+~/project $ git commit -m "first commit"
+~/project $ cd ~/Dropbox/git
+
+~/Dropbox/git $ git init --bare project.git
+~/Dropbox/git $ cd ~/project
+
+~/project $ git remote add origin ~/Dropbox/git/project.git
+~/project $ git push -u origin master
+From there, you can just clone ~/Dropbox/git/project.git that you have associated with your Dropbox account (or have shared this directory with people), you can do all the normal Git operations and they will be synchronised to all your other machines automatically.
+
+
+
+
+//===
+
+I don't think that using Git and Dropbox is the way to go... Just think about the features of both:
+
+Git:
+
+Allows you to have a central repository
+Allows you to have your own repository with your own changes
+Allows you to send and receive changes from the central repository
+Allows multiple persons to change the same files and them merges them or asks you to merge them if it can't do it
+Has web and desktop clients to allow access to the central repository
+Dropbox:
+
+Keeps everything in a central repository
+Allows you to have your own versions of the files in the server
+Forces you to send and receive changes from the central repository
+If multiple persons change the same files, the first file committed is replaced with later commits, and no merge occurs which is troublesome (and definitely its biggest disadvantage)
+Has web and desktop clients to allow access to the central repository.
+And if you're worried with sharing some of your files, why not cipher them? And then you could get the biggest advantage of Dropbox to Git, that is, to have public and private files...
+
+
+
+//===
+Now in 2014, I have been using Git and Dropbox for about one year and a half without problem. Some points though:
+
+All my machines using Dropbox are on Windows, different versions (7 to 8) + 1 mac.
+I do not share the repository with someone else, so I am the only one to modify it.
+git push pushes to a remote repository, so that if it ever gets corrupted, I can easily recover it.
+I had to create aliases in C:\Users with mklink /D link target because some libraries were pointed to absolute locations.
+
+
+
+
+//===
+
+sing several aliases in my .bash_profile so my workflow looks like this:
+
+~/project $ git init
+~/project $ git add .
+~/project $ gcam "first commit"
+~/project $ git-dropbox
+These are my aliases:
+
+alias gcam='git commit -a -m'
+alias gpom='git push origin master'
+alias gra='git remote add origin'
+alias git-dropbox='TMPGP=~/Dropbox/git/$(pwd | awk -F/ '\''{print $NF}'\'').git;mkdir -p $TMPGP && (cd $TMPGP; git init --bare) && gra $TMPGP && gpom'
+
+
+

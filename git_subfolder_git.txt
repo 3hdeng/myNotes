@@ -1,0 +1,35 @@
+testgit/
+git remote add  origin https://bitbucket.org/3hteam/testgit
+
+subfolder html
+git remote add  origin https://bitbucket.org/3hteam/ipynb_html
+
+
+//=== https://github.com/libgit2/libgit2sharp/issues/838
+2014.09
+??? Committing a git repository that contains another git repository throws an exception.
+
+Maybe some error like, "A git repository was found in a subdirectory. Git repositories cannot be nested.".
+
+
+So far, I have only used git from a gui (specifically github for Windows). 
+I don't know what "git.git" is. 
+??? However, duplicating the error should be easy. 
+Clone any repository. Clone any other repository. Copy the second repository into a subdirectory of the first, and run any test you wish.
+warm regards,
+Blake
+
+
+-->  a part of libgit2(sharp) seeing the submodule, which can only be a leaf and is thus treated as a file, and trying to add it as a file, which (presumably) git_index_add(_bypath)() doesn't like.
+git won't show an error, 
+since it's not an error to add a submodule (COMMIT). 
+The resulting entry in the tree will however be likely rather unusable 
+if you have not set up the submodule information. 
+We shouldn't throw an error either.
+
+
+
+--> 
+This might be a bug in libgit2(sharp), in GHfW, or a combination or something else.
+
+

@@ -1,0 +1,31 @@
+chrome
+v8
+
+webkit
+
+headless broswer
+gui-less
+
+webcrawler
+webbot
+
+--> webcore
+--> blink
+
+
+
+
+webstorm
+
+.njs --> associ javascript 
+
+
+cloud9 
+
+gen.xyz
+download.com.com
+
+
+>>>>
+ipython, notebook
+

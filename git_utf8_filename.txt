@@ -1,0 +1,35 @@
+//=== https://github.com/msysgit/msysgit/wiki/Git-for-Windows-Unicode-Support
+
+MSYS programs don't fully support Unicode yet, 
+e.g. bash doesn't let you type non-ASCII characters
+ls converts non-ASCII characters to '?' when printing to the console (redirecting to a file or another program works, though)
+
+Tcl only supports BMP (Basic Multilingual Plane, i.e. Unicode characters \u0000 - \uffff), therefore gitk and git-gui currently don't support e.g. CJK Extensions B - D.
+
+
+*** Checking if a repository contains non-ASCII file names
+
+The recodetree check command scans the entire history of a git repository and prints all non-ASCII file names. If the output is empty, no migration is necessary.
+
+Note: the recodetree script doesn't work with quoted characters, disable quoted file names first: git config [--global] core.quotepath off
+
+
+*** Migration without previous Git for Windows available
+
+Manually
+
+This requires renaming all non-ASCII file names manually.
+
+Check out a clean state of the working copy:
+git clean -f && git reset --hard
+git status will report non-ASCII file names as untracked (mostly with mangled names).
+Fix the mangled file names in the working copy manually.
+Replace file names in the staging area with the current state of the working copy:
+git rm -rf --cached \* && git add --all
+git status should now report all non-ASCII file names as renamed only.
+Commit the changes:
+git commit -m "UTF-8 conversion"
+Repeat for every branch of interest
+
+
+https://github.com/msysgit/msysgit/wiki/Git-for-Windows-Unicode-Support

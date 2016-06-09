@@ -1,0 +1,15 @@
+ssh bbs@ptt.cc (big5) ? ssh bbsu@ptt.cc (utf8)
+
+
+//=== http://lunduke.com/2012/02/07/how-to-set-up-your-own-bbs-be-the-king-of-1989-today/
+my personal favorite options that should cover most people’s needs: Synchronet and Virtual Advanced.
+
+
+Synchronet is open source, still updated (though not necessarily all that often) and runs on Windows, Linux and FreeBSD.
+Virtual Advanced is closed source (though freely available), no longer in development and runs under DOS.  (Yes.  I did say this was one of my favorites.  I’ll explain a little further down.)
+
+
+(There are many other, very capable, BBS servers out there.  Including EleBBS, WWIV, Wildcat! and Mystic.  I am choosing to cover only Synchronet and Virtual Advanced here to keep things simple.)
+
+
+What *is* important to consider is latency.  While a satellite internet connection may have enough bandwidth to handle a BBS… the ping time is going to make your BBS almost unusable as you will end up waiting for an eternity every time you hit a ke

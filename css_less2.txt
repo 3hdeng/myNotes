@@ -1,0 +1,46 @@
+http://lesscss.org
+https://github.com/less/less.js
+
+
+
+
+//=== install Options for adding Less.js 
+
+* Install with npm: npm install less
+* Download the latest release
+* Clone the repo: git clone https://github.com/less/less.js.git
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
+
+
+Browser Options
+Options are defined by setting them on a global less object before the <script src="less.js"></script>:
+
+<!-- set options before less.js script -->
+<script>
+  less = {
+    env: "development",
+    async: false,
+    fileAsync: false,
+    poll: 1000,
+    functions: {},
+    dumpLineNumbers: "comments",
+    relativeUrls: false,
+    rootpath: ":/a.com/"
+  };
+</script>
+<script src="less.js"></script>
+Or for brevity they can be set as attributes on the script and link tags (requires JSON.parse browser support or polyfill).
+
+<link data-dump-line-numbers="all" data-global-vars='{ myvar: "#ddffee", mystr: "\"quoted\"" }' rel="stylesheet/less" type="text/css" href="less/styles.less">
+<script src="less.js" data-poll="1000" data-relative-urls="false"></script>
+
+
+//===
+<body>
+this is a test for less.js<br>
+??? Make sure you include your stylesheets before the script.<br>
+link your .less stylesheets with the rel attribute set to "stylesheet/less":
+
+

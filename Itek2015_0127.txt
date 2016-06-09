@@ -1,0 +1,13 @@
+Heroku -> GitHub
+Heroku -> Dropbox
+
+GitHub page
+static website
+
+CMS dynamic contents to staic webpages
+
+
+
+
+//===
+Bit coin and prime number

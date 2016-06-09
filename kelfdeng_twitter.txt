@@ -1,0 +1,23 @@
+//=== https://apps.twitter.com
+
+my 1st app on twitter
+http://myapp1.twit.3hd.me
+
+//=== the following are old, key and secret already regenerated!
+Application Settings
+Keep the "Consumer Secret" a secret. This key should never be human-readable in your application.
+Consumer Key (API Key)	xxxxxxxxxxxxxxxxxxx
+Consumer Secret (API Secret)	xxxxxxxxxxxxxxx
+Access Level	Read-only (modify app permissions)
+Owner	kelfdeng
+Owner ID	xxxxxxxxx
+
+
+Access level	Read-only (modify app permissions)
+Consumer Key (API Key)	xxxxxxxxxxxxxxxxxxxxx (manage keys and access tokens)
+Callback URL	None
+Sign in with Twitter	No
+App-only authentication	https://api.twitter.com/oauth2/token
+Request token URL	https://api.twitter.com/oauth/request_token
+Authorize URL	https://api.twitter.com/oauth/authorize
+Access token URL	https://api.twitter.com/oauth/access_token

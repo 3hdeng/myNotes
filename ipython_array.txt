@@ -1,0 +1,61 @@
+array --> 1D, 2D, 3D, ...
+vector --> 1D, 
+matrix --> 2D
+
+??? There is a simple way to transpose a 2D matrix - zip(*a)
+
+??? The transpose of a 1D array is still a 1D array! (If you're used to matlab, it fundamentally doesn't have a concept of a 1D array. Matlab's "1D" arrays are 2D.)
+
+import numpy as np
+a = np.array([5,4])[np.newaxis]
+print a
+print a.T
+
+
+
+import numpy as np    
+a = np.array([[5, 4]])
+a.T # transpose
+a.shape # dimension
+
+ [5,4] != [[5],[4]] 
+
+
+
+
+//===
+
+*** can convert an existing vector into a matrix by wrapping it in an extra set of square brackets...
+
+from numpy import *
+v=array([5,4]) ## create a numpy vector
+array([v]).T ## transpose a vector into a matrix
+
+
+
+//===
+arr1.shape
+Out[47]: (3L,)
+
+arr2= np.array([[1,2,3]])
+
+arr2.shape
+Out[49]: (1L, 3L)
+
+arr3= np.array([[1],[2],[3]])
+
+arr3.shape
+Out[51]: (3L, 1L)
+
+arr4=arr3.T
+
+arr4.shape
+Out[53]: (1L, 3L)
+
+arr5= arr1.T
+
+arr5.shape
+Out[55]: (3L,)
+
+
+http://stackoverflow.com/questions/3061761/numpy-array-dimensions

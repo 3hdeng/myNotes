@@ -1,0 +1,84 @@
+//=== http://www.wpexplorer.com/create-wordpress-theme-html-1/
+
+save it as style.css in your theme folder. Add the following information at the very top of the newly-created style.css:
+
+1
+/*Theme Name: Your theme's name
+2
+Theme URI: Your theme's URL
+3
+Description: A brief description of your theme
+4
+Version: 1.0 or any other version you want
+5
+Author: Your name or WordPress.org's username
+6
+Author URI: Your web address
+7
+Tags: Tags to locate your theme in the WordPress theme repository
+8
+*/
+Do not leave out the (/*…*/) comment tags. Save the changes.
+
+
+
+get_template_directory_uri
+<img alt="your_logo_alt_text" src="<?php echo get_template_directory_uri(); ?>/images/logo.jpg" />
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/example.js"></script>
+
+//===
+Responsive Theme is a flexible foundation with fluid grid system that adapts your website to mobile devices and the desktop or any other viewing environment. Theme features 9 Page Templates, 11 Widget Areas, 6 Template Layouts, 4 Menu Positions and more. Powerful but simple Theme Options for full CMS control with easy Logo Upload and Social Networking. Responsive is WooCommerce Compatible, Multilingual Ready (WPML), RTL-Language Support, Retina-Ready, Search Engine Friendly, W3C Markup Validated and currently translated into over 45 languages. Cross-Browser compatible. Official support forum (http://cyberchimps.com/forum/free/responsive/)
+
+
+
+http://cyberchimps.com/responsive-theme/
+
+
+wordpress built-in functions
+http://codex.wordpress.org/Function_Reference
+
+
+//=== http://www.siteground.com/tutorials/wordpress/wordpress_create_theme.htm
+
+create the following files into the tutorial_theme directory:
+
+header.php - This file will contain the code for the header section of the theme;
+index.php - This is the main file for the theme. It will contain the code for the Main Area and will specify where the other files will be included;
+sidebar.php - This file will contain the information about the sidebar;
+footer.php - This file will handle your footer;
+style.css - This file will handle the styling of your new theme;
+
+
+
+//===
+In order to take advantage of these new CSS classes for image alignment and the text wrapping around the image, the WordPress Theme must include the following in the style.css found in the WordPress Theme directory.
+
+img.alignright { float: right; margin: 0 0 1em 1em; }
+img.alignleft { float: left; margin: 0 1em 1em 0; }
+img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.alignright { float: right; }
+.alignleft { float: left; }
+.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+
+
+//=== http://codex.wordpress.org/Page_Templates#Creating_a_Page_Template
+for a file to be recognized as a custom page template, it must start with the string "Template Name:" in a comment. After that you can to add other information, like:
+
+<?php
+/*
+ * Template Name: My Custom Page
+ * Description: A Page Template with a darker design.
+ */
+
+// Code to display Page goes here...
+
+
+
+//===
+Page Template Functions
+These built-in WordPress functions and methods can help you work with page templates:
+
+get_page_template() returns the path of the page template used to render the page.
+wp_get_theme()->get_page_templates() returns all custom page templates available to the currently active Theme (get_page_templates() is a method of the WP_Theme class).
+is_page_template() returns true or false depending on whether a custom page template was used to render the Page.
+get_page_template_slug() returns the value of Custom Field '_wp_page_template' (null when value is empty or 'default').

@@ -1,0 +1,80 @@
+[Q] what's the meaning of tracking remote branch?
+
+//=== http://stackoverflow.com/questions/5697750/what-exactly-does-the-u-do-git-push-u-origin-master-vs-git-push-origin-ma
+ 
+from kernel.org for git push:
+
+-u === --set-upstream
+
+For every branch that is up to date or successfully pushed, add upstream (tracking) reference, used by argument-less git-pull(1) and other commands. For more information, see branch.<name>.merge in git-config(1).
+
+
+//===
+To see the difference, let's use a new empty branch:
+
+$ git checkout -b test
+First, we push without -u:
+
+$ git push origin test
+$ git pull
+You asked me to pull without telling me which branch you
+want to merge with, and 'branch.test.merge' in
+your configuration file does not tell me, either. Please
+specify which branch you want to use on the command line and
+try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) for details.
+
+If you often merge with the same branch, you may want to
+use something like the following in your configuration file:
+
+    [branch "test"]
+    remote = <nickname>
+    merge = <remote-ref>
+
+    [remote "<nickname>"]
+    url = <url>
+    fetch = <refspec>
+
+See git-config(1) for details.
+Now if we add -u:
+
+$ git push -u origin test
+Branch test set up to track remote branch test from origin.
+Everything up-to-date
+$ git pull
+Already up-to-date.
+
+
+
+//===
+ git push -u origin master
+Is the same as:
+
+ git push origin master ; git branch --set-upstream master origin/master
+
+
+
+
+//===
+how to make a new branch that tracks remote branches, 
+but how do I make an existing branch track a remote branch?
+
+Set up the 'remote' if you don't have it already
+
+# git remote add origin ssh://...
+Now configure master to know to track:
+
+# git config branch.master.remote origin
+# git config branch.master.merge refs/heads/master
+And push:
+
+# git push origin master
+
+
+//=== http://stackoverflow.com/questions/520650/make-an-existing-git-branch-track-a-remote-branch/2286030#2286030
+$ git push -u origin branch-name
+
+The git-branch command also understands --set-upstream, but its use can be confusing.
+Version 1.8.0 modifies the interface.
+
+git branch --set-upstream is deprecated and may be removed in a relatively distant future.  git branch [-u|--set-upstream-to] has been introduced with a saner order of arguments.
