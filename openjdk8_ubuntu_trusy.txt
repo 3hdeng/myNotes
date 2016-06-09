@@ -1,0 +1,33 @@
+http://askubuntu.com/questions/464755/how-to-install-openjdk-8-on-14-04-lts
+openjdk 8 for ubuntu trusty(14.04)
+
+As of 2016-04-23 Ubuntu 16.04 has ben released, with both OpenJDK 8 and 9 in the official repositories. I would recommend upgrading to that.
+
+As of 2016-01-11 OpenJDK 8 is still not available in an official backport for 14.04. It is, however, available in 14.10 and forwards.
+
+IMPORTANT: If you need this backported to 14.04, vote for this bug by logging in and clicking "Does it affect you" at the top: https://bugs.launchpad.net/ubuntu/+source/openjdk-8/+bug/1368094
+
+Java 8 is now available according to http://openjdk.java.net/projects/jdk8/, but http://openjdk.java.net/install/ does not yet mention how to install OpenJDK 8 (not Oracle Java) on Ubuntu 14.04 Long Term Support. (For 14.10 and later just run apt-get install openjdk-8-jdk)
+
+How and when can this be done?
+
+
+//=== openjdk8 for ubuntu14.04
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-8-jdk
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+
+
+??? Cloning submodules for https://github.com/grpc/grpc.git: Resolving deltas (16101 / 17187)
+
+
+//=== oracle java 8 
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+To automatically set up the Java 8 environment variables
+
+sudo apt-get install oracle-java8-set-default
+
