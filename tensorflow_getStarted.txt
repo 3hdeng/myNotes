@@ -1,0 +1,18 @@
+//=== run tensorflow in docker
+
+We provide 4 Docker images:
+
+gcr.io/tensorflow/tensorflow: TensorFlow CPU binary image.
+gcr.io/tensorflow/tensorflow:latest-devel: CPU Binary image plus source code.
+gcr.io/tensorflow/tensorflow:latest-gpu: TensorFlow GPU binary image.
+gcr.io/tensorflow/tensorflow:latest-devel-gpu: GPU Binary image plus source code.
+
+
+$  docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow
+
+http://tensor.westus.cloudapp.azure.com:8888/
+
+
+Test the TensorFlow installation
+
+
