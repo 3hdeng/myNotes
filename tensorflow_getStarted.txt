@@ -9,10 +9,24 @@ gcr.io/tensorflow/tensorflow:latest-devel-gpu: GPU Binary image plus source code
 
 
 $  docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow
+--> ipynb, notebook
 
 http://tensor.westus.cloudapp.azure.com:8888/
 
 
 Test the TensorFlow installation
+
+# Using 'python -m' to find the program in the python search path:
+$ python -m tensorflow.models.image.mnist.convolutional
+
+or directly assign the path to convolutional.py
+$ python /usr/local/lib/python2.7/dist-packages/tensorflow/models/image/mnist/convolutional.py
+...
+
+
+
+//===
+ construction phase,
+ execution phase,
 
 
